@@ -12,7 +12,7 @@ const { Db } = require('mongodb');
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
 
-// app.use(express.static(path.resolve(__dirname, 'whateverwearebundling')))
+app.use(express.static(path.resolve(__dirname, '../client/index.js')))
 
 /*
 login
