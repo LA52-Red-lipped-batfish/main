@@ -2,7 +2,8 @@
   "scripts": {
     "start": "NODE_ENV=production nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack-dev-server"
+    "dev": "NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack serve",
+    "web-dev": "cross-env NODE_ENV=development nodemon server/server.js & cross-env NODE_ENV=development webpack-dev-server"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
