@@ -14,7 +14,7 @@ CREATE TABLE public.userDetails (
 	"_id" serial NOT NULL,
 	"username" varchar NOT NULL UNIQUE,
 	"password" varchar NOT NULL,
-  "name" varchar NOT NULL
+  "name" varchar NOT NULL,
 	CONSTRAINT "userDetails_pk" PRIMARY KEY ("_id")
 ) WITH (
   OIDS=FALSE
