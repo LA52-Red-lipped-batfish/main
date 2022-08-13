@@ -12,7 +12,14 @@ const { Db } = require('mongodb');
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
 
-app.use(express.static(path.resolve(__dirname, '../client/index.js')))
+app.use('/', express.static(path.resolve(__dirname, '../build/webpack.html')))
+
+// // app.use('/client', express.static(path.resolve(__dirname, '../client')));
+
+
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/index.html'))
+// })
 
 /*
 login

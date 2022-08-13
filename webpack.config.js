@@ -12,20 +12,19 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: '/',
+    publicPath: '/build/',
     filename: 'bundle.js'
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.jsx?/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              ['@babel/preset-env', '@babel/preset-react']
-            ]
+            presets: ['@babel/preset-env', '@babel/preset-react']
+            
           }
         }
       },
@@ -38,7 +37,7 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              implementation: require.resolve("sass"),
+              implementation: require.resolve("sass-loader"),
             }
           }
         ]
@@ -48,9 +47,9 @@ module.exports = {
   plugins: [
     htmlPlugin
   ],
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
+  // resolve: {
+  //   extensions: ['.js', '.jsx']
+  // },
   devServer: {
     proxy: {
       '/': 'localhost:3000'
