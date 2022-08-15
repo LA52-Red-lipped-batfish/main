@@ -56,7 +56,8 @@ module.exports = {
     },
     // made an edit to proxy endpoint
     proxy: {
-      '/api': 'localhost:3000'
+      '/api': 'http://localhost:3000',
+      '/events': 'http://localhost:3000'
     }
   }
 }

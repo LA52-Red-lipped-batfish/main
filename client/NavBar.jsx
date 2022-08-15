@@ -9,23 +9,14 @@
 
 // export default NavBar
 import React, { Component } from 'react';
-import UserProfile from './UserProfile';
-// import EventsContrainer from '../EventsContainer.jsx';
-
-// logic
-// when someone logs in, we send fetch request to '/user'
-
-// Create an onSubmit event handler 
-  // When that submitted, grab pw and username
-  // Create fetch (post) request
-    // add in post body, the pw and username
+import EventsContainer from './EventsContainer';
 
 
 class NavBar extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        // eventList: [],
+        eventList: ['hello tehre im revnt list'],
         lastEventId: 10000,
       }
       this.loginRequest = this.loginRequest.bind(this)
@@ -56,7 +47,7 @@ class NavBar extends Component {
       // Grab the information from the DOM
       // Put into the fetch request body
     }
-
+    
     render() {
       return(
         <div className="outerBox">
@@ -67,7 +58,7 @@ class NavBar extends Component {
             <button type="button" onClick={()=>{this.loginRequest()}}>SUBMIT</button>
           </form>
           <a href='./signup'>Create an Account</a>
-          <UserProfile />
+          <EventsContainer eventList={this.state.eventList} />
         </div>
       )
     }
