@@ -6,7 +6,7 @@ const Event = props => {
   return(
     <div className="eventBox">
       <div className='eventTitle'>
-        <h1>{props.info.name}</h1>
+        <h2>{props.info.name}</h2>
       </div>
       <div className='eventImg'>
         {/* <span>{props.info.description}</span> */}
