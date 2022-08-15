@@ -17,9 +17,10 @@ app.use(express.urlencoded({ extended: true}))
 login
 */
 // Receive get request from front-end to /user endpoint
-// app.post('/user', userController.verifyLogin, (req, res) => {
-//   return res.status(200).json(res.locals.verifyUser)
-// })
+app.post('/user', userController.verifyLogin, (req, res) => {
+  console.log('in server.js');
+  return res.status(200).json(res.locals.verifyUser)
+})
 
 // interested in event button
 
