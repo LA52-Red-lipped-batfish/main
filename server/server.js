@@ -5,12 +5,15 @@ const app = express();
 
 const PORT = 3000;
 
+const cors = require('cors');
+
 const eventController = require('./controllers/eventController')
 const userController = require('./controllers/userController');
 const { Db } = require('mongodb');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
+app.use(cors());
 
 
 /*
@@ -19,7 +22,10 @@ login
 // Receive get request from front-end to /user endpoint
 app.post('/user', userController.verifyLogin, (req, res) => {
   console.log('in server.js');
+  console.log(res.locals.verifyUser)
   return res.status(200).json(res.locals.verifyUser)
+  // return res.status(200).send('test-server-return')
+
 })
 
 // interested in event button
