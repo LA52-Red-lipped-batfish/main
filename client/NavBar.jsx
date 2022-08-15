@@ -10,6 +10,9 @@
 // export default NavBar
 import React, { Component } from 'react';
 import EventsContainer from './EventsContainer';
+import UserProfile from './UserProfile';
+// import Login from './Login';
+
 
 
 class NavBar extends Component {
@@ -18,8 +21,11 @@ class NavBar extends Component {
       this.state = {
         eventList: ['hello tehre im revnt list'],
         lastEventId: 10000,
+        ssidStatus: false,
+        userLoggedIn: false
       }
       this.loginRequest = this.loginRequest.bind(this)
+      this.renderUserPage = this.renderUserPage.bind(this)
     }
 
     loginRequest(){
@@ -42,22 +48,65 @@ class NavBar extends Component {
         return data.json()
       })
       .then(data=>{
-        console.log('parsed data:', data);
+        console.log('parsed data:', data.userAuth);
+        if (data.userAuth) {
+          // function that creates and assigns SSID
+          this.setState({...this.state, ssidStatus: true})
+          console.log(this.state)
+        }
       })
-      // Grab the information from the DOM
-      // Put into the fetch request body
     }
+
+    renderUserPage(){
+      // Grab user's page somehow
+      console.log("renderUserPage Button")
+      this.setState({...this.state, userLoggedIn: true})
+      console.log('userLoggedIn state: ', this.state.userLoggedIn);
+    }
+
+    // User enters website
+      // User logs in -> render my events button
+        // click on my-events -> re-direct to another page with just their events
+
     
     render() {
+      let ssidCheck = this.state.ssidStatus;
+      let login;
+      if (ssidCheck === true){
+        if (this.state.userLoggedIn === true){
+          console.log("this.userLoggedIn is true");
+          login = <UserProfile />;
+        }
+        else{
+          login = <button onClick={()=>{this.renderUserPage()}}>User Page</button>;
+        }
+
+      } else {
+        login =         
+        <div >
+            <form id="login-form">
+                <input id="_username" name="username" type="text" placeholder="username"></input>
+                <input id="_password" name="password" type="password" placeholder="password"></input>
+                <button type="button" onClick={()=>{this.loginRequest()}}>SUBMIT</button>
+            </form>
+            <a href='./signup'>Create an Account</a>
+        </div>
+      }
+
+
       return(
         <div className="outerBox">
           <h1 id="header">Who's Going?</h1>
-          <form id="login-form">
+          {/* <form id="login-form">
             <input id="_username" name="username" type="text" placeholder="username"></input>
             <input id="_password" name="password" type="password" placeholder="password"></input>
             <button type="button" onClick={()=>{this.loginRequest()}}>SUBMIT</button>
-          </form>
-          <a href='./signup'>Create an Account</a>
+          </form> */}
+
+          <div class="login-form-feature">
+            {login}
+          </div>
+
           <div className='mainContainer'>
             <EventsContainer eventList={this.state.eventList} />
           </div>

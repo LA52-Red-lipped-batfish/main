@@ -33,7 +33,7 @@ userController.verifyLogin = async (req, res, next) => {
             else {
                 console.log('Login failed');
                 res.locals.verifyUser = {userAuth: false};
-                return next();
+                return res.redirect('/signup');
             }
         })
         .catch((err) => {
