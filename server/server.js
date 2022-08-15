@@ -12,7 +12,7 @@ const { Db } = require('mongodb');
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
 
-app.use(express.static(path.resolve(__dirname, '../client/index.js')))
+app.use(express.static(path.resolve(__dirname, '../build')))
 
 /*
 login
@@ -23,9 +23,6 @@ app.post('/user', userController.verifyLogin, (req, res) => {
 })
 
 // interested in event button
-
-
-
 
 
 // Global error handler
