@@ -7,13 +7,17 @@ const PORT = 3000;
 
 const cors = require('cors');
 
+const cookieParser = require('cookie-parser');
+
 const eventController = require('./controllers/eventController')
 const userController = require('./controllers/userController');
+const cookieController = require('./controllers/cookieController')
 const { Db } = require('mongodb');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
 app.use(cors());
+app.use(cookieParser());
 
 
 /*
@@ -30,6 +34,7 @@ app.post('/user', userController.verifyLogin, (req, res) => {
 
 // interested in event button
 
+// test cookie set
 
 // get all events
 
