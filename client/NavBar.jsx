@@ -9,18 +9,18 @@
 
 // export default NavBar
 import React, { Component } from 'react';
-// import EventsContrainer from '../EventsContainer.jsx';
+import EventsContainer from './EventsContainer';
 
 
 class NavBar extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        eventList: [],
+        eventList: ['hello tehre im revnt list'],
         lastEventId: 10000,
       }
     }
-
+    
     render() {
       return(
         <div className="outerBox">
@@ -31,7 +31,7 @@ class NavBar extends Component {
             <input type='submit' value='login'></input>
           </form>
           <a href='./signup'>Create an Account</a>
-          {/* <EventsContainer/> */}
+          <EventsContainer eventList={this.state.eventList} />
         </div>
       )
     }

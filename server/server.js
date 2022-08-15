@@ -24,6 +24,13 @@ app.post('/user', userController.verifyLogin, (req, res) => {
 
 // interested in event button
 
+
+// get all events
+
+app.get('/events', eventController.getEvents, (req, res) => {
+  console.log('successfully get events');
+  return res.status(200).json(res.locals.events);
+})
 // statically serve our build folder if we are in production
 
 if (process.env.NODE_ENV === 'production') {
