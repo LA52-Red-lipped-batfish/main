@@ -24,6 +24,15 @@ app.post('/user', userController.verifyLogin, (req, res) => {
 
 // interested in event button
 
+// statically serve our build folder if we are in production
+
+if (process.env.NODE_ENV === 'production') {
+  // serves the build folder to index.html on <script> tag
+  app.use('/build', express.static(path.join(__dirname, '../build')));
+
+  // serve index.html on the route '/'
+  app.get('/', res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
+}
 
 // Global error handler
 app.use((err, req, res, next) => {
