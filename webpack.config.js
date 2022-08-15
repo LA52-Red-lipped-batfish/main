@@ -1,7 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const htmlPlugin = new HtmlWebpackPlugin({
-  filename: 'webpack.html',
+  title: 'Development Server',
   template: './client/index.html'
 })
 
@@ -12,7 +12,6 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
@@ -35,12 +34,7 @@ module.exports = {
         use: [
           "style-loader",
           "css-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              implementation: require.resolve("sass"),
-            }
-          }
+          "sass-loader"
         ]
       }
     ]
@@ -52,8 +46,12 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   devServer: {
+    static: {
+      publicPath: '/build',
+      directory: path.join(__dirname, 'build')
+    },
     proxy: {
-      '/': 'localhost:3000'
+      '/api': 'localhost:3000'
     }
   }
 }
