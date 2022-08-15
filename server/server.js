@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
 
   // serve index.html on the route '/'
   app.get('/', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+    res.status(200).sendFile(path.join(__dirname, '../index.html'))
   });
 }
 
