@@ -12,7 +12,6 @@ const { Db } = require('mongodb');
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
 
-app.use(express.static(path.resolve(__dirname, '../build')))
 
 /*
 login
@@ -31,7 +30,9 @@ if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
 
   // serve index.html on the route '/'
-  app.get('/', res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
+  app.get('/', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, '../client/index.html'))
+  });
 }
 
 // Global error handler
