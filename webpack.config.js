@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const htmlPlugin = new HtmlWebpackPlugin({
   title: 'Development Server',
-  template: './client/index.html'
+  template: 'index.html'
 })
 
 module.exports = {
