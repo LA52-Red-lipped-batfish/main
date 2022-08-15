@@ -58,7 +58,9 @@ class NavBar extends Component {
             <button type="button" onClick={()=>{this.loginRequest()}}>SUBMIT</button>
           </form>
           <a href='./signup'>Create an Account</a>
-          <EventsContainer eventList={this.state.eventList} />
+          <div className='mainContainer'>
+            <EventsContainer eventList={this.state.eventList} />
+          </div>
         </div>
       )
     }

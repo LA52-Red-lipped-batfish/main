@@ -3,6 +3,12 @@
   height: 500px;
 }
 
+.mainContainer {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+}
+
 .eventImg img {
   height: 500px;
   width: 500px;
