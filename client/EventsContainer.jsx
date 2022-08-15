@@ -15,22 +15,31 @@ class EventsContainer extends Component {
       fetch('/events')
        .then(res => res.json())
        .then(eventList => {
-        return this.setState({
-            eventList
+        this.setState({
+          eventList
         })
        })
-       .catch((err) => {
-        console.log('this is error', err)
-       })
     }
-    // componentDidUpdate() {
-    //   this.setState((state) => {
-    //     return state;
-    //   })
-    // }
+
     render() {
+      if (!this.state.eventList) return (
+        <div>
+          <h1>Loading events, please wait...</h1>
+        </div>
+      );
+
+      const eventElems = this.state.eventList.map((event, i) => {
+        return (
+          <Event key={i}
+          info={event}/>
+        );
+      });
+
+      console.log(eventElems);
       return(
-        <Event eventList={this.state.eventList} />
+        <div class='eventContainerBox'>
+          {eventElems}
+        </div>
       )
     }
 }
