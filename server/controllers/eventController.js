@@ -17,4 +17,10 @@ eventController.getEvents = (req, res, next) => {
 })
 }
 
+eventController.myEvents = (req, res, next) => {
+  // test 1 user's events
+  // check req header for ssid cookie
+
+  
+}
 module.exports = eventController
