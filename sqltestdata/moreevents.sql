@@ -1,0 +1,4 @@
+INSERT INTO events VALUES (4, 'Codesmith Senior Farewell Party', 'Get turnt and code it up with this 72 hour hackathon. No sleep. No eat. Just code.', 'https://e7.pngegg.com/pngimages/691/148/png-clipart-comic-black-circles-dark-circles-remove-eyes-bags-thumbnail.png');
+INSERT INTO events VALUES (5, 'Codesmith Junior to Senior Initiation', 'We are becoming seniors, omg. Do some cooooode. Do some mroe code!!', 'https://vickyflipfloptravels.com/wp-content/uploads/2015/02/19-Things-You-16.jpg.webp');
+INSERT INTO events VALUES (6, 'Cornerapp 2.0 Launch Party', 'CRONUTs for everyone from our CEO, CTO, CMO, COO. BRING YOUR OWN DOG.', 'https://thumbs.dreamstime.com/z/l-letter-hand-drawn-symbol-vector-illustration-big-english-black-white-roman-alphabet-typographic-can-be-used-as-logo-201773010.jpg');
+INSERT INTO events VALUES (7, 'Momo Birthday Party', 'yes', 'https://media.istockphoto.com/photos/very-funny-dog-picture-id499109117');
