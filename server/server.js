@@ -29,7 +29,6 @@ app.post('/user', userController.verifyLogin, (req, res) => {
   console.log(res.locals.verifyUser)
   return res.status(200).json(res.locals.verifyUser)
   // return res.status(200).send('test-server-return')
-
 })
 
 // interested in event button

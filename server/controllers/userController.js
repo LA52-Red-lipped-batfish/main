@@ -39,8 +39,8 @@ userController.verifyLogin = async (req, res, next) => {
         .catch((err) => {
             return next(err)
         })
-        
 }
+
 
 
 // userController.verifyLogin = (req, res, next) => {

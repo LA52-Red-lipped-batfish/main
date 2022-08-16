@@ -22,19 +22,16 @@ class NavBar extends Component {
         eventList: ['hello tehre im revnt list'],
         lastEventId: 10000,
         ssidStatus: false,
-        userLoggedIn: false
+        userLoggedIn: false,
+        userInfo: {name: 'Jenna', lastname: 'Moon'}
       }
       this.loginRequest = this.loginRequest.bind(this)
       this.renderUserPage = this.renderUserPage.bind(this)
     }
 
     loginRequest(){
-      // event.preventDefault();
       const username = document.getElementById('_username');
       const password = document.getElementById('_password');
-      // console.log('loginRequest');
-      // console.log('userName: ' ,userName.value);
-      // console.log('password: ', password.value);
       console.log('loginRequest send');
       const data = {username: username.value, password: password.value}
       console.log(JSON.stringify(data));
@@ -60,6 +57,16 @@ class NavBar extends Component {
     renderUserPage(){
       // Grab user's page somehow
       console.log("renderUserPage Button")
+
+      // fetch request and grab user data
+      // fetch('http://localhost:3000/userProfile')
+      //   .then(data => data.json())
+      //   .then(data => {
+      //     this.state.userInfo = data;
+      //   })
+        
+      // Pass data into prop
+
       this.setState({...this.state, userLoggedIn: true})
       console.log('userLoggedIn state: ', this.state.userLoggedIn);
     }
@@ -72,39 +79,39 @@ class NavBar extends Component {
     render() {
       let ssidCheck = this.state.ssidStatus;
       let login;
+      let userInfo = this.state.userInfo;
+      console.log(userInfo);
       if (ssidCheck === true){
         if (this.state.userLoggedIn === true){
           console.log("this.userLoggedIn is true");
-          login = <UserProfile />;
+          // add props data in to UserProfile
+          login = <UserProfile userInfo = {userInfo}/>;
         }
         else{
           login = <button onClick={()=>{this.renderUserPage()}}>User Page</button>;
         }
 
       } else {
-        login =         
+        login =
         <div >
             <form id="login-form">
                 <input id="_username" name="username" type="text" placeholder="username"></input>
                 <input id="_password" name="password" type="password" placeholder="password"></input>
                 <button type="button" onClick={()=>{this.loginRequest()}}>SUBMIT</button>
+                <a href='./signup'>Create an Account</a>
             </form>
-            <a href='./signup'>Create an Account</a>
         </div>
       }
 
 
       return(
         <div className="outerBox">
-          <h1 id="header">Who's Going?</h1>
-          {/* <form id="login-form">
-            <input id="_username" name="username" type="text" placeholder="username"></input>
-            <input id="_password" name="password" type="password" placeholder="password"></input>
-            <button type="button" onClick={()=>{this.loginRequest()}}>SUBMIT</button>
-          </form> */}
+          <div className="nav-bar">
+            <h1 id="header">Who's Going?</h1>
 
-          <div class="login-form-feature">
-            {login}
+            <div class="login-form-feature">
+              {login}
+            </div>
           </div>
 
           <div className='mainContainer'>

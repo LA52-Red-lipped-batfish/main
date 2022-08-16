@@ -1,0 +1,16 @@
+
+.nav-bar{
+    background-color: rgb(182, 98, 98);
+    display: flex;
+    padding: 0.5em;
+    justify-content: space-between;
+}
+
+
+#login-form{
+    // grid-column-start: 3;
+    // grid-column-end: 4;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
