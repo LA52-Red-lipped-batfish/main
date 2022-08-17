@@ -19,7 +19,8 @@ CREATE TABLE public.eventinfo(
     eventDate DATE NOT NULL,
     eventTime TIME NOT NULL,
     imageLink VARCHAR NOT NULL,
-    eventAddress VARCHAR NOT NULL     
+    eventAddress VARCHAR NOT NULL,
+    theUser VARCHAR REFERENCES users(userName)   
 );
 
 CREATE TABLE public.allEvents(
@@ -44,20 +45,20 @@ INSERT INTO public."users" (username, password, firstName, lastName) VALUES
   ('theloner', 'awesome', 'James', 'Bond');
   
 
-INSERT INTO eventinfo (eventTitle, eventDate, eventTime, imageLink, eventAddress) VALUES
-  ('Haul & Oats Concert', '19 Nov 2022', 'T20:00:00', 'https://www.concertarchives.org/image_uploads/photo/image/47469/large_splash.jpg', '3900 w. manchester blvd. inglewood ca 90305'),
+INSERT INTO eventinfo (eventTitle, eventDate, eventTime, imageLink, eventAddress, theUser) VALUES
+  ('Haul & Oats Concert', '19 Nov 2022', 'T20:00:00', 'https://www.concertarchives.org/image_uploads/photo/image/47469/large_splash.jpg', '3900 w. manchester blvd. inglewood ca 90305', 'miketyson'),
 
-  ('Lakers vs Clippers', '22 Oct 2022', 'T15:30:00', 'https://www.cryptoarena.com/assets/img/1130x665_Lakers-0203833209.jpg', '1111 S Figueroa St, Los Angeles, CA 90015'),
+  ('Lakers vs Clippers', '22 Oct 2022', 'T15:30:00', 'https://www.cryptoarena.com/assets/img/1130x665_Lakers-0203833209.jpg', '1111 S Figueroa St, Los Angeles, CA 90015', 'kevinbacon'),
 
-  ('mini-golf Tournament', '02 Nov 2022', 'T13:00:00', 'https://p300-americantownscom.netdna-ssl.com/img/article/ca-mini-golf-1.jpg', '4989 Sepulveda Blvd, Sherman Oaks, CA 91403'),
+  ('mini-golf Tournament', '02 Nov 2022', 'T13:00:00', 'https://p300-americantownscom.netdna-ssl.com/img/article/ca-mini-golf-1.jpg', '4989 Sepulveda Blvd, Sherman Oaks, CA 91403', 'hamburglar'),
 
-  ('Pie Festival', '24 Oct 2022', 'T11:00:00', 'https://img-aws.ehowcdn.com/700x/cdn.onlyinyourstate.com/wp-content/uploads/2020/03/54799012_1025085660995023_8280480514696019968_n-700x467.jpg', '1869 N Vermont Ave, Los Angeles, CA 90027'),
+  ('Pie Festival', '24 Oct 2022', 'T11:00:00', 'https://img-aws.ehowcdn.com/700x/cdn.onlyinyourstate.com/wp-content/uploads/2020/03/54799012_1025085660995023_8280480514696019968_n-700x467.jpg', '1869 N Vermont Ave, Los Angeles, CA 90027', 'hamburglar'),
 
-  ('Holloween Party', '29 Oct 2022', 'T19:00:00', 'https://www.brisbanekids.com.au/wp-content/uploads/2014/10/Depositphotos_82209490_S.jpg', '633 W 5th St 59th Floor, Los Angeles, CA'),
+  ('Holloween Party', '29 Oct 2022', 'T19:00:00', 'https://www.brisbanekids.com.au/wp-content/uploads/2014/10/Depositphotos_82209490_S.jpg', '633 W 5th St 59th Floor, Los Angeles, CA', 'barbarawalters'),
 
-  ('Thanksgiving Dinner', '24 Nov 2022', 'T16:00:00', 'https://www.thespruceeats.com/thmb/7MZsLHfU1MI1hFY4qCY4F3PlZrY=/940x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/thanksgiving-dinner-dishes-836012728-5bdda2e6c9e77c00262539e0.jpg', '1250 E Harvard Rd, Burbank, CA 91501'),
+  ('Thanksgiving Dinner', '24 Nov 2022', 'T16:00:00', 'https://www.thespruceeats.com/thmb/7MZsLHfU1MI1hFY4qCY4F3PlZrY=/940x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/thanksgiving-dinner-dishes-836012728-5bdda2e6c9e77c00262539e0.jpg', '1250 E Harvard Rd, Burbank, CA 91501', 'barbarawalters'),
 
-  ('Watergun Fight', '27 Aug 2022', 'T16:00:00', 'https://images.dailyhive.com/20160810195402/watergun.jpg', '4730 Crystal Springs Dr, Los Angeles, CA 90027');
+  ('Watergun Fight', '27 Aug 2022', 'T16:00:00', 'https://images.dailyhive.com/20160810195402/watergun.jpg', '4730 Crystal Springs Dr, Los Angeles, CA 90027', 'emmanuelMacron');
 
 
 INSERT INTO allEvents (theEvent, theUser) VALUES
@@ -114,6 +115,7 @@ INSERT INTO friends(theUser, theFriend) VALUES
     ('barbarawalters', 'kevinbacon'),
     ('barbarawalters', 'hamburglar'),
     ('barbarawalters', 'miketyson');
+
 
 
 
