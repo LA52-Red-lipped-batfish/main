@@ -54,10 +54,15 @@ module.exports = {
       publicPath: '/build',
       directory: path.join(__dirname, 'build')
     },
+    hot: true,
     // made an edit to proxy endpoint
     proxy: {
-      '/api': 'http://localhost:3000',
-      '/events': 'http://localhost:3000'
+      // '/api': 'http://localhost:3000',
+      // '/events': 'http://localhost:3000'
+      '/**': {
+        target: 'http://localhost:3000',
+        secure: false,
+      }
     }
   }
 }

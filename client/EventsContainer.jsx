@@ -1,48 +1,48 @@
 import React, { Component } from 'react';
 import Event from './Event';
 
-class EventsContainer extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {
-        eventList: []
-      }
-    }
+const EventsContainer =()=>{
+  // constructor(props) {
+  //     super(props);
+  //     this.state = {
+  //       eventList: []
+  //     }
+  //   }
 
-    componentDidMount() {
-      console.log('in componentDidmount')
-      //fetch request to events to grab all data
-      fetch('/events')
-       .then(res => res.json())
-       .then(eventList => {
-        this.setState({
-          eventList
-        })
-       })
-    }
+  //   componentDidMount() {
+  //     console.log('in componentDidmount')
+  //     //fetch request to events to grab all data
+  //     fetch('/events')
+  //      .then(res => res.json())
+  //      .then(eventList => {
+  //       this.setState({
+  //         eventList
+  //       })
+  //      })
+  //   }
 
-    render() {
-      if (!this.state.eventList) return (
-        <div>
-          <h1>Loading events, please wait...</h1>
-        </div>
-      );
+  //   render() {
+  //     if (!this.state.eventList) return (
+  //       <div>
+  //         <h1>Loading events, please wait...</h1>
+  //       </div>
+  //     );
 
-      const eventElems = this.state.eventList.map((event, i) => {
-        return (
-          <Event key={i}
-          info={event}/>
-        );
-      });
+  //     const eventElems = this.state.eventList.map((event, i) => {
+  //       return (
+  //         <Event key={i}
+  //         info={event}/>
+  //       );
+  //     });
 
-      console.log(eventElems);
+  //     console.log(eventElems);
       return(
         <div class='eventContainerBox'>
-          {eventElems}
+          {/* {eventElems} */}
         </div>
       )
     }
-}
+
 
 // const EventsContainer = (props) => {
   

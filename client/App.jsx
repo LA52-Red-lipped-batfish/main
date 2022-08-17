@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Homepage from './components/Homepage';
+import NavBar from './NavBar';
+import Login from './components/Login';
+import './index.scss';
 
 
 
-class App extends Component {
-    constructor(props) {
-      super(props);
-    }
+const App =() =>{
   
-    render() {
       return(
-        <div className="container">
-          <NavBar />
-        </div>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/home' element={<Homepage />} />
+          </Routes>
+        </Router>
       )
     }
-  }
+  
   
   export default App;
