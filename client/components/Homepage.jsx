@@ -1,8 +1,30 @@
 import React from 'react'
 import Events from './Events'
 
+const cards = [
+  {
+    eventName:'Michael "s birthday',
+    participants:100,
+    location:'300 1st street,Arcadia,CA,91006',
+    date:'Oct 20th 2022',
+    time:'8:20PM',
+    description:'Have fun ',
+    imgsrc:"https://www.funimada.com/assets/images/cards/big/bday-254.gif"
+},
 
+  {
+      eventName:'Motorcycle party',
+      participants:999,
+      location:'100 1st street,Arcadia,CA,91006',
+      date:'Oct 10th 2022',
+      time:'8:30PM',
+      description:'Let"party',
+      imgsrc:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  }
+
+]
 const Homepage = () => {
+
   return (
     <div className='d-flex justify-content-start'>
       <form action='http://localhost:8080/api' method='post'>
@@ -32,7 +54,10 @@ const Homepage = () => {
 </div>
 </div>
 </form>
-<Events></Events>
+{cards.map(e=><Events cards={e} key={e.eventName}
+></Events>)}
+
+
 </div>
   )
 }
