@@ -41,11 +41,18 @@ app.post('/user', userController.verifyLogin, (req, res) => {
 //    }
 app.post('/api',  (req, res) => {
  
- console.log(req.body);
+ console.log('this is post',req.body);
  
   res.status(200)
   // return res.status(200).send('test-server-return')
 })
+app.put('/attend',  (req, res) => {
+ 
+  console.log('this is put',req.body);
+  
+   res.status(200)
+   // return res.status(200).send('test-server-return')
+ })
 
 // interested in event button
 

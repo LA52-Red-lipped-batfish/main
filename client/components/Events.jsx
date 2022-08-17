@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-
+import axios from 'axios';
 
 
 const Events = () => {
@@ -13,6 +13,19 @@ const popfunction = ()=>{
 
     
 }
+const attend = () =>{
+
+    axios.put("http://localhost:8080/attend", {
+     
+      username: 'michael',
+     event:'Motorcycle'
+     
+    })
+    .then((response) => alert(response))
+    .catch((err) => console.log(err));
+   
+}
+
   return (
     
     
@@ -27,7 +40,7 @@ const popfunction = ()=>{
     <p className="card-text">20 Participants</p>
     <p className="card-text"><img src="https://www.technipages.com/wp-content/uploads/2020/10/fix-google-maps-not-updating-location-600x341.png" alt="" style={{width:'50px'}}/>330 laurel ave</p>
     <p className="card-text"> <img src="https://storage.needpix.com/rsynced_images/clock-4314041_1280.jpg" alt="" style={{width:'50px'}}/>Aug 10 / 8:30PM</p>
-    <button  className="btn btn-success btn-lg">I AM IN</button>
+    <button  onClick={attend} className="btn btn-success btn-lg">I AM IN</button>
     <button onClick={popfunction} className="btn btn-success btn-info ms-3 btn-lg">Description</button>
     <div className='pop fs-5 fw-bold mt-4' style={{display:pop}}>Save the date! Heat up the streets with us during Bike Night. Enjoy live music from Full Circle, delicious tacos, beautiful babes, bikes, vendors and ice-cold beer. </div>
     
