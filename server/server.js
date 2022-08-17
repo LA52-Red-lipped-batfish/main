@@ -60,7 +60,7 @@ app.put('/attend',  (req, res) => {
 
 // get all events
 
-app.get('/events', eventController.getEvents, (req, res) => {
+app.get('/getEvent', eventController.getEvents, (req, res) => {
   console.log('successfully get events');
   return res.status(200).json(res.locals.events);
 })
