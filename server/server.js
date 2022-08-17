@@ -12,7 +12,7 @@ const cookieParser = require('cookie-parser');
 const eventController = require('./controllers/eventController')
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController')
-const { Db } = require('mongodb');
+// const { Db } = require('mongodb');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
@@ -173,34 +173,62 @@ app.get('/getEvent',(req,res)=>{
 })
 //sending request to api
 //the object from the request body  
-
-// [
-//   {
-//     eventName:'Michael "s birthday',
-//     participants:100,
-//     location:'300 1st street,Arcadia,CA,91006',
-//     date:'Oct 20th 2022',
-//     time:'8:20PM',
-//     description:'Have fun ',
-//     imgsrc:"https://www.funimada.com/assets/images/cards/big/bday-254.gif"
-// }]
-
-  
-
-// app.post('/api',  (req, res) => {
+//  {
+//      event: "michael's birthday",
+//      date: '2022-08-17',
+//      email: 'ilovepuffseven@gmail.com',
+//      description: 'lets party !!!'
+//    }
+app.post('/api',  (req, res) => {
  
-//  console.log('this is post',req.body);
+ console.log('this is post',req.body);
  
-//   res.status(200)
+  res.status(200)
+  // return res.status(200).send('test-server-return')
+})
 
-// })
-// app.put('/attend',  (req, res) => {
+app.put('/attend',  (req, res) => {
  
-//   console.log('this is put',req.body);
+  console.log('this is put',req.body);
   
-//    res.status(200)
+   res.status(200)
+   // return res.status(200).send('test-server-return')
+ })
+
+/*
+sending POST request to /login
+sameple object of the request body  
+  {
+      username: 'test',
+      pasword: 'test' 
+  }
+*/
+app.post('/login',  (req, res) => {
+ 
+  console.log('POST REQUEST BODY TO /login', req.body);
   
-//  })
+  res.status(200)
+  // return res.status(200).send('test-server-return')
+})
+
+/*
+sending POST request to /signup
+sample object of the request body  
+  {
+      username: 'test',
+      pasword: 'test',
+      firstName: 'John',
+      lastName: 'Doe' 
+  }
+*/
+app.post('/signup',  (req, res) => {
+  console.log('POST REQUEST BODY TO /signup', req.body);
+  
+  res.status(200)
+  // return res.status(200).send('test-server-return')
+})
+
+
 
 // interested in event button
 
@@ -208,7 +236,7 @@ app.get('/getEvent',(req,res)=>{
 
 // get all events
 
-app.get('/events', eventController.getEvents, (req, res) => {
+app.get('/getEvent', eventController.getEvents, (req, res) => {
   console.log('successfully get events');
   return res.status(200).json(res.locals.events);
 })

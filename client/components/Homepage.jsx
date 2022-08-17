@@ -23,6 +23,24 @@ window.addEventListener('scroll',()=>{
   }
 });
 
+  const [renderArray,updateArray] = useState([]);
+  const [index,addIndex] = useState(7);
+
+
+useEffect(()=>{
+  axios.get('http://localhost:8080/getEvent')
+  
+  .then(res => updateArray(res.data)) 
+},[])
+
+
+window.addEventListener('scroll',()=>{
+  if(window.scrollY + window.innerHeight + 1 >= document.documentElement.scrollHeight)
+  {
+    addIndex(index+5)
+  }
+});
+
   return (
     <div className='eventBox'>
       <form action='http://localhost:8080/api' method='post'>
@@ -40,7 +58,7 @@ window.addEventListener('scroll',()=>{
   <label for="exampleFormControlInput1" className="form-label">Email address</label>
   <input type="text" name='imageLink' className="form-control" id="exampleFormControlInput1" placeholder="image address"/>
 
-</div>
+            </div>
 
 <div className="mb-3">
   <label for="exampleFormControlTextarea1 "  className="form-label mt-3">Description</label>
@@ -64,4 +82,4 @@ window.addEventListener('scroll',()=>{
   )
 }
 
-export default Homepage
+export default Homepage;

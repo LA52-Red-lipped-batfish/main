@@ -4,11 +4,19 @@ const eventController = {};
 
 eventController.getEvents = (req, res, next) => {
   console.log('getting events inside controller')
-  const myQuery = `SELECT * FROM events;`;
+  // const myQuery = `SELECT * FROM eventinfo;`;
+  const myQuery = `SELECT eventtitle AS eventName, to_char(eventdate,'Day Mon DD, YYYY') AS date, eventAddress AS location, to_char(eventtime, 'HH12:MI AM') AS time, imageLink AS imgsrc   FROM eventinfo;`;
 
   db.query(myQuery)
   .then((data) => {
-    // console.log(data.rows);
+    console.log(data.rows);
+    // data.rows.map(element => {
+    //   const newData = {
+    //     eventName: element.eventtitle,
+    //     location: element.eventaddress,
+    //     date: 
+    //   }
+    // })
     res.locals.events = data.rows;
     return next();
   })
