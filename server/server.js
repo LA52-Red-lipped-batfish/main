@@ -25,34 +25,182 @@ login
 */
 // Receive get request from front-end to /user endpoint
 app.post('/user', userController.verifyLogin, (req, res) => {
-  console.log('in server.js');
-  console.log(res.locals.verifyUser)
+ 
   return res.status(200).json(res.locals.verifyUser)
   // return res.status(200).send('test-server-return')
 })
+app.get('/getEvent',(req,res)=>{
 
+  return res.status(200).send([
+    {
+      eventTitle:'Jacob "s birthday',
+      participants:100,
+      eventAddress:'300 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 20th 2022',
+      eventTime:'8:20PM',
+      eventDescription:'Have fun ',
+      imageLink:"https://c.tenor.com/BF4LXetTi0kAAAAd/birthday-wishes.gif"
+  },
+  {
+    eventTitle:'Michael "s birthday',
+    participants:100,
+    eventAddress:'300 1st street,Arcadia,CA,91006',
+    eventDate:'Oct 20th 2022',
+    eventTime:'8:20PM',
+    eventDescription:'Have fun ',
+    imageLink:"https://www.funimada.com/assets/images/cards/big/bday-254.gif"
+},
+
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  },
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  },
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  },
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  }
+  , {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  }
+  , {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  }
+  , {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  },
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  },
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  },
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  },
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  },
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  },
+  {
+    eventTitle:'Motorcycle party',
+      participants:999,
+      eventAddress:'100 1st street,Arcadia,CA,91006',
+      eventDate:'Oct 10th 2022',
+      eventTime:'8:30PM',
+      eventDescription:'Let"party',
+      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+  }
+
+  ])
+})
 //sending request to api
 //the object from the request body  
-//  {
-//      event: "michael's birthday",
-//      date: '2022-08-17',
-//      email: 'ilovepuffseven@gmail.com',
-//      description: 'lets party !!!'
-//    }
-app.post('/api',  (req, res) => {
- 
- console.log('this is post',req.body);
- 
-  res.status(200)
-  // return res.status(200).send('test-server-return')
-})
-app.put('/attend',  (req, res) => {
- 
-  console.log('this is put',req.body);
+
+// [
+//   {
+//     eventName:'Michael "s birthday',
+//     participants:100,
+//     location:'300 1st street,Arcadia,CA,91006',
+//     date:'Oct 20th 2022',
+//     time:'8:20PM',
+//     description:'Have fun ',
+//     imgsrc:"https://www.funimada.com/assets/images/cards/big/bday-254.gif"
+// }]
+
   
-   res.status(200)
-   // return res.status(200).send('test-server-return')
- })
+
+// app.post('/api',  (req, res) => {
+ 
+//  console.log('this is post',req.body);
+ 
+//   res.status(200)
+
+// })
+// app.put('/attend',  (req, res) => {
+ 
+//   console.log('this is put',req.body);
+  
+//    res.status(200)
+  
+//  })
 
 // interested in event button
 
