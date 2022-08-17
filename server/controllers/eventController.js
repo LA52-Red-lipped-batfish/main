@@ -4,11 +4,11 @@ const eventController = {};
 
 eventController.getEvents = (req, res, next) => {
   console.log('getting events inside controller')
-  const myQuery = `SELECT * FROM events;`;
+  const myQuery = `SELECT * FROM eventinfo;`;
 
   db.query(myQuery)
   .then((data) => {
-    // console.log(data.rows);
+    console.log(data.rows);
     res.locals.events = data.rows;
     return next();
   })
