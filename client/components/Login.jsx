@@ -17,11 +17,15 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import { Modal } from '@mui/material';
-import SpeedDialTooltipOpen from './SpeedDialTooltipOpen';
+// import SpeedDialTooltipOpen from './SpeedDialTooltipOpen';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  let banner;
 
   // let banner = setInterval(() => {
   //   document.querySelector('#banner').setAttribute('src', banners[randomBannerIndex++ % banners.length]);
@@ -38,18 +42,18 @@ const Login = () => {
 
   // dummy data
   const [users, setUsers] = useState([{ username: 'test', password: 'test' }]);
-  const [updateBanner, setUpdateBanner] = useState(setInterval(() => {
-    document.querySelector('#banner').setAttribute('src', banners[randomBannerIndex++ % banners.length]);
+  // const [updateBanner, setUpdateBanner] = useState(setInterval(() => {
+  //   document.querySelector('#banner').setAttribute('src', banners[randomBannerIndex++ % banners.length]);
 
-    // fetch('https://dog.ceo/api/breeds/image/random')
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     // document.querySelector('banner').forEach((image) => {
-    //     //   image.setAttribute('src', data.message);
-    //     // });
-    //     document.querySelector('#banner').setAttribute('src', data.message);
-    //   });
-  }, 3000));
+  //   // fetch('https://dog.ceo/api/breeds/image/random')
+  //   //   .then((response) => response.json())
+  //   //   .then((data) => {
+  //   //     // document.querySelector('banner').forEach((image) => {
+  //   //     //   image.setAttribute('src', data.message);
+  //   //     // });
+  //   //     document.querySelector('#banner').setAttribute('src', data.message);
+  //   //   });
+  // }, 3000));
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -79,7 +83,12 @@ const Login = () => {
   // ];
 
   // dummy images
-  const banners = ['https://cdn.musicfeeds.com.au/assets/uploads/2021/02/Rick-roll-2021.png', 'https://vickyflipfloptravels.com/wp-content/uploads/2015/02/19-Things-You-16.jpg.webp', 'https://e7.pngegg.com/pngimages/691/148/png-clipart-comic-black-circles-dark-circles-remove-eyes-bags-thumbnail.png', 'https://thumbs.dreamstime.com/z/l-letter-hand-drawn-symbol-vector-illustration-big-english-black-white-roman-alphabet-typographic-can-be-used-as-logo-201773010.jpg', 'https://media.istockphoto.com/photos/very-funny-dog-picture-id499109117'];
+  const banners = [
+    'https://cdn.musicfeeds.com.au/assets/uploads/2021/02/Rick-roll-2021.png',
+    // 'https://vickyflipfloptravels.com/wp-content/uploads/2015/02/19-Things-You-16.jpg.webp',
+    'https://e7.pngegg.com/pngimages/691/148/png-clipart-comic-black-circles-dark-circles-remove-eyes-bags-thumbnail.png',
+    'https://thumbs.dreamstime.com/z/l-letter-hand-drawn-symbol-vector-illustration-big-english-black-white-roman-alphabet-typographic-can-be-used-as-logo-201773010.jpg',
+    'https://media.istockphoto.com/photos/very-funny-dog-picture-id499109117'];
 
   let randomBannerIndex = Math.floor(Math.random() * banners.length);
 
@@ -92,88 +101,97 @@ const Login = () => {
 
   function handleLogin() {
     // testing with dummy data
-    for (const user of users) {
-      if (user.username === username && user.password === password) {
-        return navigate('/Home');
-      }
-    }
+    // for (const user of users) {
+    //   if (user.username === username && user.password === password) {
+    //     clearInterval(banner);
+    //     return navigate('/Home');
+    //   }
+    // }
+
+    const postBody = {
+      username,
+      password
+    };
+
+    const postOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postBody)
+    };
+
+    fetch('/login', postOptions)
+      .then((data) => data.json())
+      .then((data) => {
+        // if (data) {
+        //   navigate('/home')
+        // }
+        // else return alert('Invalid Login');
+        return navigate('/home');
+      })
+      .catch((error) => console.log(error));
+
+    clearInterval(banner);
 
     setUsername('');
     setPassword('');
-    return alert('Login Failed');
-
-    // const postBody = {
-    //   username,
-    //   password
-    // }
-
-    // const postOptions = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(postBody)
-    // }
-
-    // fetch('/login', postOptions)
-    //   .then((data) => data.json())
-    //   .then((data) => {
-    //     // if (data) {
-    //     //   navigate('/home')
-    //     // }
-    //     // else return alert('Invalid Login');
-    //     navigate('/home')
-    //   })
-    //   .catch((error) => console.log(error));
+    // return alert('Login Failed');
   }
 
   const signUp = (event) => {
     event.preventDefault();
 
-    setUsers((prev) => {
-      // console.log('before', prev);
-      prev.push({ username, password });
-      // console.log('after', prev);
-      return prev;
-    });
+    // setUsers((prev) => {
+    //   // console.log('before', prev);
+    //   prev.push({ username, password });
+    //   // console.log('after', prev);
+    //   return prev;
+    // });
 
     // console.log('users after', users);
 
 
-    // const postBody = {
-    //   username,
-    //   password
-    // }
+    const postBody = {
+      username,
+      password,
+      firstName,
+      lastName
+    };
 
-    // const postOptions = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(postBody)
-    // }
+    const postOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postBody)
+    };
 
-    // fetch('/signup', postOptions)
-    //   .then((data) => data.json())
-    //   .then((data) => {
-    //     // if (data) {
-    //     //   navigate('/home')
-    //     // }
-    //     // else return alert('Invalid Login');
-    //     navigate('/home')
-    //   })
-    //   .catch((error) => console.log(error));
+    fetch('/signup', postOptions)
+      .then((data) => data.json())
+      .then((data) => {
+        // if (data) {
+        //   navigate('/home')
+        // }
+        // else return alert('Invalid Login');
+        // return navigate('/home');
+      })
+      .catch((error) => console.log(error));
 
     setUsername('');
     setPassword('');
+    setFirstName('');
+    setLastName('');
 
+    clearInterval(banner);
 
     setOpen(false);
+    return;
   };
 
   return (
     <div className="contents">
-      <ResponsiveAppBar />
+      <ResponsiveAppBar banner={banner} />
 
 
       <Modal open={open} onClose={handleClose}>
@@ -184,6 +202,32 @@ const Login = () => {
             </center>
 
             <div className='signupbox-input'>
+              <TextField
+                id="filled-basic"
+                label="First Name"
+                variant="filled"
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                sx={{
+                  borderRadius: '0px',
+                  // borderColor: 'green',
+                }}
+              />
+
+              <TextField
+                id="filled-basic"
+                label="Last Name"
+                variant="filled"
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                sx={{
+                  borderRadius: '0px',
+                  // borderColor: 'green',
+                }}
+              />
+
               <TextField
                 id="filled-basic"
                 label="Username"
@@ -335,12 +379,11 @@ const Login = () => {
       </div>
 
 
-      <div className="SpeedDial">
+      {/* <div className="SpeedDial">
         <SpeedDialTooltipOpen
-          updateBanner={updateBanner} setUpdateBanner={setUpdateBanner} banners={banners}
-          randomBannerIndex={randomBannerIndex}
+          banner={banner}
         />
-      </div>
+      </div> */}
 
     </div>
   );
