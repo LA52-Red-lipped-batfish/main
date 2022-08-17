@@ -25,18 +25,20 @@ const Login = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  let banner = setInterval(() => {
-    document.querySelector('#banner').setAttribute('src', banners[randomBannerIndex++ % banners.length]);
+  let banner;
 
-    // fetch('https://dog.ceo/api/breeds/image/random')
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     // document.querySelector('banner').forEach((image) => {
-    //     //   image.setAttribute('src', data.message);
-    //     // });
-    //     document.querySelector('#banner').setAttribute('src', data.message);
-    //   });
-  }, 3000);
+  // let banner = setInterval(() => {
+  //   document.querySelector('#banner').setAttribute('src', banners[randomBannerIndex++ % banners.length]);
+
+  //   // fetch('https://dog.ceo/api/breeds/image/random')
+  //   //   .then((response) => response.json())
+  //   //   .then((data) => {
+  //   //     // document.querySelector('banner').forEach((image) => {
+  //   //     //   image.setAttribute('src', data.message);
+  //   //     // });
+  //   //     document.querySelector('#banner').setAttribute('src', data.message);
+  //   //   });
+  // }, 3000);
 
   // dummy data
   const [users, setUsers] = useState([{ username: 'test', password: 'test' }]);
@@ -134,7 +136,7 @@ const Login = () => {
 
     setUsername('');
     setPassword('');
-    return alert('Login Failed');
+    // return alert('Login Failed');
   }
 
   const signUp = (event) => {
@@ -172,7 +174,7 @@ const Login = () => {
         //   navigate('/home')
         // }
         // else return alert('Invalid Login');
-        return navigate('/home');
+        // return navigate('/home');
       })
       .catch((error) => console.log(error));
 
