@@ -1,8 +1,6 @@
 const path = require('path')
 const express = require('express')
-
 const app = express();
-
 const PORT = 3000;
 
 const cors = require('cors');
@@ -12,7 +10,6 @@ const cookieParser = require('cookie-parser');
 const eventController = require('./controllers/eventController')
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController')
-// const { Db } = require('mongodb');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
@@ -20,14 +17,17 @@ app.use(cors());
 app.use(cookieParser());
 
 
-/*
-login
-*/
-// Receive get request from front-end to /user endpoint
-app.post('/user', userController.verifyLogin, (req, res) => {
- 
-  return res.status(200).json(res.locals.verifyUser)
-  // return res.status(200).send('test-server-return')
+// Receive get request from front-end and reply with username
+app.post('/login', userController.verifyLogin, (req, res) => {
+  console.log('Exit verifyLogin');
+  console.log(res.locals.myUsername);
+  return res.status(200).json(res.locals.myUsername);
+});
+
+// Receive get request from front-end and reply with username
+app.post('/signup', userController.createLogin, (req, res) => {
+  console.log('Exit createLogin');
+  return res.status(200).send('created a new user');
 })
 app.get('/getEvent',(req,res)=>{
 
@@ -194,41 +194,6 @@ app.put('/attend',  (req, res) => {
    res.status(200)
    // return res.status(200).send('test-server-return')
  })
-
-/*
-sending POST request to /login
-sameple object of the request body  
-  {
-      username: 'test',
-      pasword: 'test' 
-  }
-*/
-app.post('/login',  (req, res) => {
- 
-  console.log('POST REQUEST BODY TO /login', req.body);
-  
-  res.status(200)
-  // return res.status(200).send('test-server-return')
-})
-
-/*
-sending POST request to /signup
-sample object of the request body  
-  {
-      username: 'test',
-      pasword: 'test',
-      firstName: 'John',
-      lastName: 'Doe' 
-  }
-*/
-app.post('/signup',  (req, res) => {
-  console.log('POST REQUEST BODY TO /signup', req.body);
-  
-  res.status(200)
-  // return res.status(200).send('test-server-return')
-})
-
-
 
 // interested in event button
 
