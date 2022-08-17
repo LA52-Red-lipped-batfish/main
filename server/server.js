@@ -31,6 +31,29 @@ app.post('/user', userController.verifyLogin, (req, res) => {
   // return res.status(200).send('test-server-return')
 })
 
+//sending request to api
+//the object from the request body  
+//  {
+//      event: "michael's birthday",
+//      date: '2022-08-17',
+//      email: 'ilovepuffseven@gmail.com',
+//      description: 'lets party !!!'
+//    }
+app.post('/api',  (req, res) => {
+ 
+ console.log('this is post',req.body);
+ 
+  res.status(200)
+  // return res.status(200).send('test-server-return')
+})
+app.put('/attend',  (req, res) => {
+ 
+  console.log('this is put',req.body);
+  
+   res.status(200)
+   // return res.status(200).send('test-server-return')
+ })
+
 // interested in event button
 
 // test cookie set
@@ -52,6 +75,11 @@ if (process.env.NODE_ENV === 'production') {
     res.status(200).sendFile(path.join(__dirname, '../index.html'))
   });
 }
+
+// build
+app.get("*",(req,res)=>{
+  res.sendFile(path.resolve(__dirname, '../build/index.html'))
+})
 
 // Global error handler
 app.use((err, req, res, next) => {
