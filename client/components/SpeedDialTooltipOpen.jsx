@@ -12,19 +12,19 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import PetsIcon from '@mui/icons-material/Pets';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+// import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 
 
 
 
-export default function SpeedDialTooltipOpen({ updateBanner, setUpdateBanner, banners, randomBannerIndex }) {
+export default function SpeedDialTooltipOpen({ banner }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const momo = () => {
-    clearInterval(updateBanner);
+    clearInterval(banner);
 
     document.querySelector('#banner').setAttribute('src', 'https://media.istockphoto.com/photos/very-funny-dog-picture-id499109117');
 
@@ -33,7 +33,7 @@ export default function SpeedDialTooltipOpen({ updateBanner, setUpdateBanner, ba
   };
 
   const nico = () => {
-    clearInterval(updateBanner);
+    clearInterval(banner);
 
     document.querySelector('#banner').setAttribute('src', 'https://preview.redd.it/ltz4xfzl8rn41.jpg?auto=webp&s=ebf4e69a38ff35f89cc56ca792fb930da6a2311e');
 
