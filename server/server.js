@@ -1,8 +1,6 @@
 const path = require('path')
 const express = require('express')
-
 const app = express();
-
 const PORT = 3000;
 
 const cors = require('cors');
@@ -12,7 +10,6 @@ const cookieParser = require('cookie-parser');
 const eventController = require('./controllers/eventController')
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController')
-const { Db } = require('mongodb');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
@@ -20,25 +17,19 @@ app.use(cors());
 app.use(cookieParser());
 
 
-/*
-login
-*/
-// Receive get request from front-end to /user endpoint
-app.post('/user', userController.verifyLogin, (req, res) => {
-  console.log('in server.js');
-  console.log(res.locals.verifyUser)
-  return res.status(200).json(res.locals.verifyUser)
-  // return res.status(200).send('test-server-return')
+// Receive get request from front-end and reply with username
+app.post('/login', userController.verifyLogin, (req, res) => {
+  console.log('Exit verifyLogin');
+  console.log(res.locals.myUsername);
+  return res.status(200).json(res.locals.myUsername);
+});
+
+// Receive get request from front-end and reply with username
+app.post('/signup', userController.createLogin, (req, res) => {
+  console.log('Exit createLogin');
+  return res.status(200).send('created a new user');
 })
 
-//sending request to api
-//the object from the request body  
-//  {
-//      event: "michael's birthday",
-//      date: '2022-08-17',
-//      email: 'ilovepuffseven@gmail.com',
-//      description: 'lets party !!!'
-//    }
 app.post('/api',  (req, res) => {
  
  console.log('this is post',req.body);
