@@ -5,6 +5,7 @@ const eventController = {};
 eventController.getEvents = (req, res, next) => {
   console.log('getting events inside controller')
   // const myQuery = `SELECT * FROM eventinfo;`;
+  // const myQuery = `SELECT a.theUser AS participants e.eventtitle AS eventName, to_char(e.eventdate,'Day Mon DD, YYYY') AS date, e.eventAddress AS location, to_char(e.eventtime, 'HH12:MI AM') AS time, e.imageLink AS imgsrc FROM eventinfo AS e INNER JOIN allEvents AS a ON e.eventTitle = a.theEvent;`;
   const myQuery = `SELECT eventtitle AS eventName, to_char(eventdate,'Day Mon DD, YYYY') AS date, eventAddress AS location, to_char(eventtime, 'HH12:MI AM') AS time, imageLink AS imgsrc   FROM eventinfo;`;
 
   db.query(myQuery)
