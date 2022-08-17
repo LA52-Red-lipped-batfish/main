@@ -28,16 +28,22 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 import GroupIcon from '@mui/icons-material/Group';
+import CreateEvent from './CreateEvent';
 
 import { useNavigate } from 'react-router-dom';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [];
+const settings = ['Profile', 'Account', 'Dashboard', 'Create Event', 'Logout'];
 // const pagesNavigate = ['/']
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ banner }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -59,12 +65,19 @@ const ResponsiveAppBar = () => {
   function logout() {
     console.log("i've been clicked");
     handleCloseUserMenu();
-    return navigate('/home');
+    clearInterval(banner);
+    return navigate('/');
   }
+
+
+
+  const settingsAction = [logout, logout, logout, handleOpen, logout];
+
 
   return (
 
     <AppBar position="static">
+      <CreateEvent open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -183,9 +196,9 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {settings.map((setting, index) => (
                 // <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <MenuItem key={setting} onClick={logout}>
+                <MenuItem key={setting} onClick={settingsAction[index]}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

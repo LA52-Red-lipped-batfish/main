@@ -12,7 +12,7 @@ const cookieParser = require('cookie-parser');
 const eventController = require('./controllers/eventController')
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController')
-const { Db } = require('mongodb');
+// const { Db } = require('mongodb');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
@@ -46,6 +46,7 @@ app.post('/api',  (req, res) => {
   res.status(200)
   // return res.status(200).send('test-server-return')
 })
+
 app.put('/attend',  (req, res) => {
  
   console.log('this is put',req.body);
@@ -53,6 +54,41 @@ app.put('/attend',  (req, res) => {
    res.status(200)
    // return res.status(200).send('test-server-return')
  })
+
+/*
+sending POST request to /login
+sameple object of the request body  
+  {
+      username: 'test',
+      pasword: 'test' 
+  }
+*/
+app.post('/login',  (req, res) => {
+ 
+  console.log('POST REQUEST BODY TO /login', req.body);
+  
+  res.status(200)
+  // return res.status(200).send('test-server-return')
+})
+
+/*
+sending POST request to /signup
+sample object of the request body  
+  {
+      username: 'test',
+      pasword: 'test',
+      firstName: 'John',
+      lastName: 'Doe' 
+  }
+*/
+app.post('/signup',  (req, res) => {
+  console.log('POST REQUEST BODY TO /signup', req.body);
+  
+  res.status(200)
+  // return res.status(200).send('test-server-return')
+})
+
+
 
 // interested in event button
 

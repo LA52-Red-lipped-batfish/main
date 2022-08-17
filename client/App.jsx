@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './components/Homepage';
-import NavBar from './NavBar';
+// import NavBar from './NavBar';
 import Login from './components/Login';
 import './index.scss';
 
@@ -27,20 +27,20 @@ const theme = createTheme({
   },
 });
 
-const App =() =>{
-  
-      return(
-        <ThemeProvider theme={theme}>
+const App = () => {
 
-            <Router>
-              <Routes>
-                <Route path='/' element={<Login />} />
-                <Route path='/home' element={<Homepage />} />
-              </Routes>
-            </Router>
-        </ThemeProvider>
-      )
-    }
-  
-  
-  export default App;
+  return (
+    <ThemeProvider theme={theme}>
+
+      <Router>
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/home' element={<Homepage />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  );
+};
+
+
+export default App;
