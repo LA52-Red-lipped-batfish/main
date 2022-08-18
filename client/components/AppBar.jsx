@@ -40,7 +40,7 @@ const pages = [];
 const settings = [];
 // const pagesNavigate = ['/']
 
-const ResponsiveAppBar = ({ banner }) => {
+const ResponsiveAppBar = ({ banner, user, setUser }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -66,9 +66,10 @@ const ResponsiveAppBar = ({ banner }) => {
   let navigate = useNavigate();
 
   function logout() {
-    console.log("i've been clicked");
+    // console.log("i've been clicked");
     // handleCloseUserMenu();
     // clearInterval(banner);
+    setUser(null);
     return navigate('/');
   }
 
@@ -108,7 +109,7 @@ const ResponsiveAppBar = ({ banner }) => {
 
           {/* <div className="pages"> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
+            {/* <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -117,7 +118,7 @@ const ResponsiveAppBar = ({ banner }) => {
               color="inherit"
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}

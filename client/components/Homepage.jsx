@@ -3,45 +3,60 @@ import React, { useEffect, useState } from 'react';
 import Events from './Events';
 import "./Homepage.scss";
 
-import HomeSpeedDial from './HomeSpeedDial'
+import { useNavigate } from 'react-router-dom';
+
+import HomeSpeedDial from './HomeSpeedDial';
 
 import ResponsiveAppBar from './AppBar';
 
-const Homepage = ({user, setUser}) => {
+const Homepage = ({ user, setUser }) => {
   const [renderArray, updateArray] = useState([]);
   const [index, addIndex] = useState(4);
 
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const username = urlParams.get('username');
+
+
+  let navigate = useNavigate();
+
 
   useEffect(() => {
-    axios.get('http://localhost:8080/getEvent')
+    axios.get('http://localhost:8080/getEvent', {
+      username: username
+    })
 
       .then(res => updateArray(res.data));
 
   }, []);
 
-  
-
+  // useEffect(() => {
+  //   if (!user) navigate('/');
+  // }, []);
 
   window.addEventListener('scroll', () => {
     if (window.scrollY + window.innerHeight + 1 >= document.documentElement.scrollHeight) {
       addIndex(index + 2);
     }
   });
-  const updateRender = ()=>{
+  const updateRender = () => {
     axios.get('http://localhost:8080/getEvent')
 
-    .then(res => updateArray(res.data));
+      .then(res => updateArray(res.data));
 
-  }
-console.log(renderArray);
+  };
+  console.log(renderArray);
+
+  console.log('USER IN HOMEPAGE', user);
 
   return (
     <div className="contents">
-      <ResponsiveAppBar />
+      <ResponsiveAppBar user={user} setUser={setUser} />
 
 
-    <div className='eventBox'>
-      {/* <form action='http://localhost:8080/api' method='post'>
+      <div className='eventBox'>
+        {/* <form action='http://localhost:8080/api' method='post'>
         <div className=' border border-dark p-3 mt-5' style={{ width: '400px' }}>
           <div className='d-flex justify-content-start flex-column'>
             <div className="mb-3">
@@ -71,18 +86,18 @@ console.log(renderArray);
 
 
 
-      {renderArray.slice(0, index).map(e => <Events cards={e} key={e.eventTitle}
-      updateRender={updateRender}
-      ></Events>)}
+        {renderArray.slice(0, index).map(e => <Events user={user} cards={e} key={e.eventTitle}
+          updateRender={updateRender}
+        ></Events>)}
 
 
 
-    </div>
+      </div>
 
 
-    <div className="HomeSpeedDial">
-        <HomeSpeedDial />
-    </div>
+      <div className="HomeSpeedDial">
+        <HomeSpeedDial user={user} />
+      </div>
 
     </div>
   );
