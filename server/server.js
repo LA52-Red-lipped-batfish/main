@@ -20,8 +20,7 @@ app.use(cookieParser());
 // Receive get request from front-end and reply with username
 app.post('/login', userController.verifyLogin, (req, res) => {
   console.log('Exit verifyLogin');
-  console.log(res.locals.myUsername);
-  return res.status(200).json(res.locals.myUsername);
+  return res.status(200).json(res.locals.myUserInfo);
 });
 
 // Receive get request from front-end and reply with username
@@ -216,25 +215,7 @@ if (process.env.NODE_ENV === 'production') {
 
 
 
-// build
-app.get("*",(req,res)=>{
-  res.sendFile(path.resolve(__dirname, '../build/index.html'))
-})
-
-// Global error handler
-app.use((err, req, res, next) => {
-  const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
-    status: 500,
-    message: {err: 'An error occured' },
-  }
-  const errorObj = Object.assign({}, defaultErr, err);
-  return res.status(errorObj.status).json(errorObj.message);
-})
-
-
-//GOOGLE OAUTH2
-
+//******GOOGLE OAUTH2*****
 // app.get("/", (req, res) => {
 //   res.json({message: "You are not logged in"})
 // })
@@ -259,6 +240,25 @@ app.use((err, req, res, next) => {
 //   }
 // );
 
+
+
+
+
+// build
+app.get("*",(req,res)=>{
+  res.sendFile(path.resolve(__dirname, '../build/index.html'))
+})
+
+// Global error handler
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: {err: 'An error occured' },
+  }
+  const errorObj = Object.assign({}, defaultErr, err);
+  return res.status(errorObj.status).json(errorObj.message);
+})
 
 
 

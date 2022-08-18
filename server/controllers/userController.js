@@ -17,19 +17,17 @@ userController.verifyLogin = (req, res, next) => {
     }
   );
 
-  const queryText = `SELECT password FROM users WHERE username=$1;`; 
+  const queryText = `SELECT * FROM users WHERE username=$1;`; 
   db.query(queryText, usernameQuery)
     .then(data => {
-      if (data.rowCount === 1 && password === data.rows[0].password){
-          console.log('login successful');
-          //ENTER HERE query to pull first name and last name
-          res.locals.myUsername = {username};
-          return next()
+      if (password === data.rows[0].password){
+        res.locals.myUserInfo = {username: data.rows[0].username, firstName: data.rows[0].firstname, lastName: data.rows[0].lastname};
+        return next();
       }
       else {
-          console.log('Login failed');
-          res.locals.verifyUser = {userAuth: false};
-          return res.redirect('/signup');
+        console.log('Login failed');
+        res.locals.verifyUser = {userAuth: false};
+        return res.redirect('/signup');
       }
     })
     .catch((err) => {
