@@ -16,11 +16,21 @@ const popfunction = ()=>{
 
     
 }
+
+
+
 const attend = () =>{
+  console.log('PROPS BEFORE PUSHING IM GOING', props);
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const username = urlParams.get('username');
+  
   axios.put("http://localhost:8080/attend", {
-     going:inorout,
-    theUser: 'michael',
-   eventName:'Motorcycle'
+    going:inorout,
+    theUser: username,
+    eventName: props.cards.eventname
    
   })
   .then((response) => console.log(response))

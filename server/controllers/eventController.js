@@ -9,7 +9,7 @@ eventController.getEvents = (req, res, next) => {
 
   db.query(myQuery)
   .then((data) => {
-    console.log(data.rows);
+    // console.log(data.rows);
  
     res.locals.events = data.rows;
     return next();

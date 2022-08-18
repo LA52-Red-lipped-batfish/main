@@ -15,7 +15,7 @@ import Box from '@mui/material/Box';
 // import Input from '@material-ui/core/Input';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Input from '@mui/material/Input'
+import Input from '@mui/material/Input';
 
 import { Modal } from '@mui/material';
 import SpeedDialTooltipOpen from './SpeedDialTooltipOpen';
@@ -149,13 +149,19 @@ const Login = ({ user, setUser }) => {
         console.log('THIS IS DATA', data);
         setUser(data);
 
-        // console.log('USER AFTER LOGIN', user);
+        const {
+          firstName,
+          lastName,
+          username
+        } = data;
+
+        console.log('USER AFTER LOGIN', user);
 
         setUsername('');
         setPassword('');
 
         // return navigate('/home');
-        return window.location.href = `http://localhost:8080/home?name=${data}`;
+        return window.location.href = `http://localhost:8080/home?username=${username}&name=${firstName.concat(' ', lastName)}`;
       })
       .catch((error) => {
         // console.log('THIS IS LOGIN ERROR:', error);
@@ -197,7 +203,7 @@ const Login = ({ user, setUser }) => {
       lastName
     };
 
-    console.log('POST BODY', postBody)
+    console.log('POST BODY', postBody);
 
     const postOptions = {
       method: 'POST',
