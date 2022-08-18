@@ -73,13 +73,14 @@ userController.goingButton = (req, res, next) => {
     const {theUser, eventName, going} = req.body;
     const goingQuery = [eventName, theUser];
     const goingQuery2 = [eventName];
+    console.log('reqbody', req.body);
     queryText = "";
     queryText2 = "";
     if(going === 'true'){
       queryText = 'INSERT INTO allEvents (theEvent, theUser) VALUES ($1, $2 );'
       queryText2 = 'UPDATE eventinfo SET participants = (SELECT participants FROM eventinfo WHERE eventTitle = $1  ) + 1 WHERE eventTitle = $1 ;';
     
-    }else if(going === 'FALSE'){
+    }else if(going === 'false'){
       console.log('delete it');
       queryText = 'DELETE FROM allEvents WHERE theEvent = $1 AND theUser = $2;'
       queryText2 = 'UPDATE eventinfo SET participants = (SELECT participants FROM eventinfo WHERE eventTitle = $1  ) - 1 WHERE eventTitle = $1 ;';
@@ -109,7 +110,33 @@ userController.goingButton = (req, res, next) => {
           message: {err: err },
         })
       })
+};
 
+userController.who = (req, res, next) => {
+  console.log('entered who');
+  const {theEvent} = req.body;
+  const goingQuery = [theEvent];
+  let queryText = 'SELECT * FROM allevents WHERE theevent = $1;'
+  
+  db.query(queryText, goingQuery)
+        .then(data => {
+          console.log(data.rows)
+          console.log('what is rows');
+          let whoArr = [];
+          data.rows.forEach(el => {
+            whoArr.push(el.theuser);
+          })
+          res.locals.myList = whoArr
+          console.log(whoArr);
+          return next()
+        })
+        .catch((err) => {
+          return next({
+            log: 'Express error handler caught goingButton error.  Unable to add/delete row from allEvents',
+            status: 401,
+            message: {err: err },
+          })
+        })
 };
 
 

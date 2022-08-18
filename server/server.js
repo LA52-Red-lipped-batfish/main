@@ -192,6 +192,11 @@ app.put('/attend', userController.goingButton, (req, res) => {
   res.status(200).send('database updated');
 });
 
+app.post('/going', userController.who, (req, res) => {
+  console.log('res', res.locals.myList);
+  res.status(200).json(res.locals.myList);
+});
+
 // interested in event button
 
 // test cookie set
