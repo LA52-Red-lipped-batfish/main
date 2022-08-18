@@ -5,13 +5,10 @@ import axios from 'axios';
 
 const Events = (props) => {
 
-
-
-
-
-
-
 const [pop,setPop] = useState('none')
+const [inorout,changeInOut] = useState(true);
+const [inoroutText,changeinoroutText] = useState('I AM IN')
+const [attendBTN,changeBTN] = useState('btn btn-lg btn-primary');
 
 const popfunction = ()=>{
     if(pop ==='block') {setPop('none')}else{setPop('block');}
@@ -20,35 +17,44 @@ const popfunction = ()=>{
     
 }
 const attend = () =>{
+  axios.put("http://localhost:8080/attend", {
+     going:inorout,
+    theUser: 'michael',
+   eventName:'Motorcycle'
+   
+  })
+  .then((response) => console.log(response))
+  .catch((err) => console.log(err));
+   if(inorout ===true) {
+    changeinoroutText('I AM OUT')
+    changeBTN('btn-danger btn-lg btn')
+    changeInOut(false)}else{
+      changeinoroutText('I AM IN')
+      changeBTN('btn btn-lg btn-success')
+    changeInOut(true)}
 
-    axios.put("http://localhost:8080/attend", {
-     
-      username: 'michael',
-     eventName:'Motorcycle'
-     
-    })
-    .then((response) => alert(response))
-    .catch((err) => console.log(err));
+  
+    props.updateRender();
    
 }
 
   return (
     
     
-   <div className='ms-5 mt-5'>
+   <div className='d-flex mt-5 justify-content-center'>
 
-<div className="card" style={{ width: "23rem"}}>
+<div className="card" style={{ width: "40rem"}}>
   <img src={props.cards.imgsrc} className="card-img-top w-100"style={{width:"22rem",height:"25rem"}} alt="..."/>
   <div className="card-body text-center">
-    <h5 className="card-title">Events Title</h5>
+    <h5 className="card-title fs-2">Events Name</h5>
     {/* grab data from database with name/data/number people attend */}
-    <p className="card-text">{props.cards.eventname}</p>
-    {/* <p className="card-text">{props.cards.participants} Participants</p>     */}
-    <p className="card-text"><img src="https://www.technipages.com/wp-content/uploads/2020/10/fix-google-maps-not-updating-location-600x341.png" alt="" style={{width:'50px'}}/>{props.cards.location}</p>
-    <p className="card-text"> <img src="https://storage.needpix.com/rsynced_images/clock-4314041_1280.jpg" alt="" style={{width:'50px'}}/>{props.cards.date} / {props.cards.time}</p>
-    <button  onClick={attend} className="btn btn-success btn-lg">I AM IN</button>
+    <p className="card-text fs-2">{props.cards.eventname}</p>
+    <p className="card-text">{props.cards.participants} Participants</p>    
+    <p className="card-text fs-4"><img src="https://www.technipages.com/wp-content/uploads/2020/10/fix-google-maps-not-updating-location-600x341.png" alt="" style={{width:'50px'}}/>{props.cards.location}</p>
+    <p className="card-text fs-4"> <img src="https://storage.needpix.com/rsynced_images/clock-4314041_1280.jpg" alt="" style={{width:'50px'}}/>{props.cards.date} / {props.cards.time}</p>
+    <button  onClick={attend} className={attendBTN}>{inoroutText}</button>
     <button onClick={popfunction} className="btn btn-success btn-info ms-3 btn-lg">Description</button>
-    <div className='pop fs-5 fw-bold mt-4' style={{display:pop}}>{props.cards.eventDescription}</div>
+    <div className='pop fs-5 fw-bold mt-4' style={{display:pop}}>{props.cards.eventdescription}</div>
     
   </div>
 </div>
