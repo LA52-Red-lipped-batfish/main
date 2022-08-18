@@ -75,6 +75,16 @@ app.post('/signup', userController.createLogin, (req, res) => {
   return res.status(200).send('created a new user');
 })
 
+//   ])
+// })
+//sending request to api
+//the object from the request body  
+//  {
+//      event: "michael's birthday",
+//      date: '2022-08-17',
+//      email: 'ilovepuffseven@gmail.com',
+//      description: 'lets party !!!'
+//    }
 app.post('/api', eventController.addEvent, (req, res) => {
  console.log('this is post',req.body);
   res.status(200).redirect('http://localhost:8080/home')
@@ -85,13 +95,16 @@ app.put('/attend', userController.goingButton, (req, res) => {
   res.status(200).send('database updated');
 });
 
-app.get('/getEvent', eventController.getEvents, (req, res) => {
+// interested in event button
+
+// test cookie set
+
+// get all events
+
+app.post('/getEvent', eventController.getEvents, eventController.addIsGoing, (req, res) => {
+  
   return res.status(200).json(res.locals.events);
 })
-
-
-
-
 // statically serve our build folder if we are in production
 if (process.env.NODE_ENV === 'production') {
   // serves the build folder to index.html on <script> tag
