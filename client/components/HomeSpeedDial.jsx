@@ -13,13 +13,15 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 // import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 // import SaveIcon from '@mui/icons-material/Save';
 // import PrintIcon from '@mui/icons-material/Print';
-import ShareIcon from '@mui/icons-material/Share';
-// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import ShareIcon from '@mui/icons-material/Share';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import EventIcon from '@mui/icons-material/Event';
 
 
+
 import CreateEvent from './CreateEvent';
+import Profile from './Profile';
 
 
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
@@ -37,28 +39,20 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
 
 
 export default function PlaygroundSpeedDial() {
-  const [direction, setDirection] = React.useState('down');
-  const [hidden, setHidden] = React.useState(false);
+  // const [direction, setDirection] = React.useState('down');
+  // const [hidden, setHidden] = React.useState(false);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const [profileOpen, setProfileOpen] = React.useState(false);
-  // const handleProfileOpen = () => setProfileOpen(true);
-  // const handleProfileClose = () => setProfileOpen(false);
-
-
-  {/* <Profile profileOpen={profileOpen} setProfileOpen={setProfileOpen} handleProfileOpen={handleProfileOpen} handleProfileClose={handleProfileClose} /> */}
-
-  {/* const [profileOpen, setProfileOpen] = React.useState(false);
-const handleProfileOpen = () => setProfileOpen(true);
-const handleProfileClose = () => setProfileOpen(false); */}
-
+  const [profileOpen, setProfileOpen] = React.useState(false);
+  const handleProfileOpen = () => setProfileOpen(true);
+  const handleProfileClose = () => setProfileOpen(false);
 
   const actions = [
+    { icon: <AccountCircleIcon />, name: 'Profile', handleClick: handleProfileOpen },
     { icon: <EventIcon />, name: 'Add Event', handleClick: handleOpen }
-    // { icon: <AccountCircleIcon />, name: 'Profile', handleClick: handleProfileOpen },
     // { icon: <SaveIcon />, name: 'Save' },
     // { icon: <PrintIcon />, name: 'Print' },
     // { icon: <ShareIcon />, name: 'Share', handleClick: handleOpen },
@@ -67,13 +61,14 @@ const handleProfileClose = () => setProfileOpen(false); */}
   return (
     <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
       <CreateEvent open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} />
+      <Profile open={profileOpen} setOpen={setProfileOpen} handleOpen={handleProfileOpen} handleClose={handleProfileClose} />
 
       <Box sx={{ position: 'relative', mt: 3, height: 320 }}>
         <StyledSpeedDial
           ariaLabel="SpeedDial playground example"
-          hidden={hidden}
+          // hidden={hidden}
           icon={<SpeedDialIcon />}
-          direction={direction}
+          direction={'down'}
         >
           {actions.map((action) => (
             <SpeedDialAction

@@ -16,7 +16,7 @@ const style = {
 };
 
 
-const CreateEvent = ({ open, setOpen, handleOpen, handleClose }) => {
+const Profile = ({ open, setOpen, handleOpen, handleClose }) => {
   return (
     <Modal
       open={open}
@@ -30,27 +30,21 @@ const CreateEvent = ({ open, setOpen, handleOpen, handleClose }) => {
             <div className='d-flex justify-content-start flex-column'>
               <div className="mb-3">
                 <label htmlFor="exampleFormControlInput1" className="form-label">Event Name</label>
-                <input type="text" name='eventTitle' className="form-control" id="exampleFormControlInput1" placeholder="event name" />
+                <input type="text" name='event' className="form-control" id="exampleFormControlInput1" placeholder="event name" />
                 <label htmlFor="exampleFormControlInput1" className="form-label">Location</label>
-
-
-                <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="location" name='location' />
-
-
+                <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="location" />
                 <label htmlFor="exampleFormControlInput1" className="form-label">Date</label>
-                <input className='form-control' type="date" name="eventDate" id="" />
+                <input className='form-control' type="date" name="date" id="" />
                 <label htmlFor="exampleFormControlInput1" className="form-label">Time</label>
-
-                <input className='form-control' type="time" name="eventTime" id="" />
+                <input className='form-control' type="time" name="" id="" />
                 <label htmlFor="exampleFormControlInput1" className="form-label">image address</label>
-
-                <input type="text" name='imageLink' className="form-control" id="exampleFormControlInput1" placeholder="Image Address" />
+                <input type="text" name='email' className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
 
               </div>
 
               <div className="mb-3">
                 <label htmlFor="exampleFormControlTextarea1 " className="form-label mt-3">Description</label>
-                <textarea name='eventDescription' className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea name='description' className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 <div className='d-flex justify-content-center'>
                   <button className='btn btn-lg btn-primary mt-3' type="submit">SUBMIT</button>
                 </div>
@@ -64,4 +58,4 @@ const CreateEvent = ({ open, setOpen, handleOpen, handleClose }) => {
   );
 };
 
-export default CreateEvent;
+export default Profile;
