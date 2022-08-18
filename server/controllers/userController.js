@@ -4,7 +4,7 @@ const db = require('../models/whosGoingModels')
 const userController = {};
 
 //Verify that the password of the user.
-userController.verifyLogin = async (req, res, next) => {
+userController.verifyLogin = (req, res, next) => {
   console.log('we entered the verifyLogin');
 
   const {username, password} = req.body;
@@ -17,18 +17,17 @@ userController.verifyLogin = async (req, res, next) => {
     }
   );
 
-  const queryText = `SELECT password FROM users WHERE username=$1;`; 
+  const queryText = `SELECT * FROM users WHERE username=$1;`; 
   db.query(queryText, usernameQuery)
     .then(data => {
-      if (data.rowCount === 1 && password === data.rows[0].password){
-          console.log('login successful');
-          res.locals.myUsername = username;
-          return next()
+      if (password === data.rows[0].password){
+        res.locals.myUserInfo = {username: data.rows[0].username, firstName: data.rows[0].firstname, lastName: data.rows[0].lastname};
+        return next();
       }
       else {
-          console.log('Login failed');
-          res.locals.verifyUser = {userAuth: false};
-          return res.redirect('/signup');
+        console.log('Login failed');
+        res.locals.verifyUser = {userAuth: false};
+        return res.redirect('/signup');
       }
     })
     .catch((err) => {
@@ -41,7 +40,7 @@ userController.verifyLogin = async (req, res, next) => {
 }
 
 
-userController.createLogin = async (req, res, next) => {
+userController.createLogin = (req, res, next) => {
   console.log('we entered the createLogin');
 
   const {username, password, firstName, lastName} = req.body;
@@ -68,6 +67,50 @@ userController.createLogin = async (req, res, next) => {
   });
 }
 
+
+userController.goingButton = (req, res, next) => {
+    console.log('entered going button');
+    const {theUser, eventName, going} = req.body;
+    const goingQuery = [eventName, theUser];
+    const goingQuery2 = [eventName];
+    queryText = "";
+    queryText2 = "";
+    if(going === 'true'){
+      queryText = 'INSERT INTO allEvents (theEvent, theUser) VALUES ($1, $2 );'
+      queryText2 = 'UPDATE eventinfo SET participants = (SELECT participants FROM eventinfo WHERE eventTitle = $1  ) + 1 WHERE eventTitle = $1 ;';
+    
+    }else if(going === 'FALSE'){
+      console.log('delete it');
+      queryText = 'DELETE FROM allEvents WHERE theEvent = $1 AND theUser = $2;'
+      queryText2 = 'UPDATE eventinfo SET participants = (SELECT participants FROM eventinfo WHERE eventTitle = $1  ) - 1 WHERE eventTitle = $1 ;';
+    }
+
+    db.query(queryText, goingQuery)
+      .then(data => {
+        console.log('successful add/delete event');
+
+        db.query(queryText2, goingQuery2)
+        .then(data => {
+          console.log('successful in updating participants');
+          return next()
+        })
+        .catch((err) => {
+          return next({
+            log: 'Express error handler caught goingButton error.  Unable to add/delete row from allEvents',
+            status: 401,
+            message: {err: err },
+          })
+        })
+      })
+      .catch((err) => {
+        return next({
+          log: 'Express error handler caught goingButton error.  Unable to increment/decrement eventinfo/participants',
+          status: 401,
+          message: {err: err },
+        })
+      })
+
+};
 
 
 
