@@ -3,28 +3,45 @@ import React, { useEffect, useState } from 'react';
 import Events from './Events';
 import "./Homepage.scss";
 
-const Homepage = () => {
+import HomeSpeedDial from './HomeSpeedDial'
+
+import ResponsiveAppBar from './AppBar';
+
+const Homepage = ({user, setUser}) => {
   const [renderArray, updateArray] = useState([]);
-  const [index, addIndex] = useState(7);
+  const [index, addIndex] = useState(4);
 
 
   useEffect(() => {
     axios.get('http://localhost:8080/getEvent')
 
       .then(res => updateArray(res.data));
+
   }, []);
+
+  
 
 
   window.addEventListener('scroll', () => {
     if (window.scrollY + window.innerHeight + 1 >= document.documentElement.scrollHeight) {
-      addIndex(index + 5);
+      addIndex(index + 2);
     }
   });
+  const updateRender = ()=>{
+    axios.get('http://localhost:8080/getEvent')
 
+    .then(res => updateArray(res.data));
+
+  }
+console.log(renderArray);
 
   return (
+    <div className="contents">
+      <ResponsiveAppBar />
+
+
     <div className='eventBox'>
-      <form action='http://localhost:8080/api' method='post'>
+      {/* <form action='http://localhost:8080/api' method='post'>
         <div className=' border border-dark p-3 mt-5' style={{ width: '400px' }}>
           <div className='d-flex justify-content-start flex-column'>
             <div className="mb-3">
@@ -50,14 +67,22 @@ const Homepage = () => {
             </div>
           </div>
         </div>
-      </form>
+      </form> */}
 
 
 
       {renderArray.slice(0, index).map(e => <Events cards={e} key={e.eventTitle}
+      updateRender={updateRender}
       ></Events>)}
 
 
+
+    </div>
+
+
+    <div className="HomeSpeedDial">
+        <HomeSpeedDial />
+    </div>
 
     </div>
   );

@@ -17,15 +17,18 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import { Modal } from '@mui/material';
-// import SpeedDialTooltipOpen from './SpeedDialTooltipOpen';
+import SpeedDialTooltipOpen from './SpeedDialTooltipOpen';
 
-const Login = () => {
+const Login = ({user, setUser}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
+  const [signupUsername, setSignupUsername] = useState('');
+  const [signupPassword, setSignupPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  let banner;
+  // let banner;
 
   // let banner = setInterval(() => {
   //   document.querySelector('#banner').setAttribute('src', banners[randomBannerIndex++ % banners.length]);
@@ -128,14 +131,30 @@ const Login = () => {
         //   navigate('/home')
         // }
         // else return alert('Invalid Login');
+
+        /*
+          data
+        */
+        setUser(data);
+        console.log('THIS IS DATA', data);
+
+        setUsername('');
+        setPassword('');
+
         return navigate('/home');
       })
-      .catch((error) => console.log(error));
+      .catch((error) =>{
+        console.log(error);
 
-    clearInterval(banner);
+        setUsername('');
+        setPassword('');
 
-    setUsername('');
-    setPassword('');
+        return alert('Login Failed');
+      });
+
+    // clearInterval(banner);
+
+
     // return alert('Login Failed');
   }
 
@@ -153,8 +172,8 @@ const Login = () => {
 
 
     const postBody = {
-      username,
-      password,
+      username: signupUsername,
+      password: signupPassword,
       firstName,
       lastName
     };
@@ -174,24 +193,25 @@ const Login = () => {
         //   navigate('/home')
         // }
         // else return alert('Invalid Login');
-        // return navigate('/home');
+        setSignupUsername('');
+        setSignupPassword('');
+        setFirstName('');
+        setLastName('');
+
+        setOpen(false);
+
+        return navigate('/home');
       })
-      .catch((error) => console.log(error));
-
-    setUsername('');
-    setPassword('');
-    setFirstName('');
-    setLastName('');
-
-    clearInterval(banner);
-
-    setOpen(false);
-    return;
+      .catch((error) => {
+        console.log(error);
+        setOpen(false);
+        return alert('Invalid Account');
+      });
   };
 
   return (
-    <div className="contents">
-      <ResponsiveAppBar banner={banner} />
+    <div className="loginContents">
+      {/* <ResponsiveAppBar banner={banner} /> */}
 
 
       <Modal open={open} onClose={handleClose}>
@@ -233,8 +253,8 @@ const Login = () => {
                 label="Username"
                 variant="filled"
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={signupUsername}
+                onChange={(e) => setSignupUsername(e.target.value)}
                 sx={{
                   borderRadius: '0px',
                   // borderColor: 'green',
@@ -246,8 +266,8 @@ const Login = () => {
                 label="Password"
                 variant="filled"
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={signupPassword}
+                onChange={(e) => setSignupPassword(e.target.value)}
                 sx={{
                   borderRadius: '0px',
                   // backgroundColor: 'green'
@@ -276,7 +296,7 @@ const Login = () => {
             id='banner'
             width="100%"
             height="100%"
-            src="https://images-na.ssl-images-amazon.com/images/I/31Xzh6LfzeL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"
+            src="https://res.cloudinary.com/teepublic/image/private/s--fTcgZW4X--/t_Resized%20Artwork/c_fit,g_north_west,h_954,w_954/co_000000,e_outline:48/co_000000,e_outline:inner_fill:48/co_ffffff,e_outline:48/co_ffffff,e_outline:inner_fill:48/co_bbbbbb,e_outline:3:1000/c_mpad,g_center,h_1260,w_1260/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1573969065/production/designs/6761858_0.jpg"
           />
           {/* <img src={require("https://images-na.ssl-images-amazon.com/images/I/31Xzh6LfzeL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg")} alt={"Danger Noodle"}/> */}
 
@@ -379,11 +399,9 @@ const Login = () => {
       </div>
 
 
-      {/* <div className="SpeedDial">
-        <SpeedDialTooltipOpen
-          banner={banner}
-        />
-      </div> */}
+      <div className="SpeedDial">
+        <SpeedDialTooltipOpen />
+      </div>
 
     </div>
   );

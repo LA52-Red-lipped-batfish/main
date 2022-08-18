@@ -37,8 +37,8 @@ const CreateEvent = ({ open, setOpen, handleOpen, handleClose }) => {
                 <input className='form-control' type="date" name="date" id="" />
                 <label htmlFor="exampleFormControlInput1" className="form-label">Time</label>
                 <input className='form-control' type="time" name="" id="" />
-                <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
-                <input type="email" name='email' className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+                <label htmlFor="exampleFormControlInput1" className="form-label">image address</label>
+                <input type="text" name='email' className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
 
               </div>
 

@@ -185,13 +185,13 @@ app.post('/api', eventController.addEvent, (req, res) => {
  
  console.log('this is post',req.body);
  
-  res.status(200).json(res.locals.newEvent);
+  res.status(200).redirect('http://localhost:8080/home')
   // return res.status(200).send('test-server-return')
 })
 
 app.put('/attend',  (req, res) => {
  
-  console.log('this is put',req.body);
+
   
    res.status(200)
    // return res.status(200).send('test-server-return')
@@ -204,7 +204,7 @@ app.put('/attend',  (req, res) => {
 // get all events
 
 app.get('/getEvent', eventController.getEvents, (req, res) => {
-  console.log('successfully get events');
+  
   return res.status(200).json(res.locals.events);
 })
 // statically serve our build folder if we are in production
