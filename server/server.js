@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express')
 const app = express();
+require('dotenv').config();
 const PORT = 3000;
 
 const cors = require('cors');
@@ -286,7 +287,6 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log('Listening on ', PORT)
-  console.log(process.env.JACOB)
 })
 
 module.exports = app;
