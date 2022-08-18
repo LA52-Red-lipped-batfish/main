@@ -4,26 +4,40 @@ const eventController = {};
 
 eventController.getEvents = (req, res, next) => {
   console.log('getting events inside controller')
-  // const myQuery = `SELECT * FROM eventinfo;`;
-  // const myQuery = `SELECT a.theUser AS participants e.eventtitle AS eventName, to_char(e.eventdate,'Day Mon DD, YYYY') AS date, e.eventAddress AS location, to_char(e.eventtime, 'HH12:MI AM') AS time, e.imageLink AS imgsrc FROM eventinfo AS e INNER JOIN allEvents AS a ON e.eventTitle = a.theEvent;`;
-  const myQuery = `SELECT eventtitle AS eventName, to_char(eventdate,'Day Mon DD, YYYY') AS date, eventAddress AS location, to_char(eventtime, 'HH12:MI AM') AS time, imageLink AS imgsrc   FROM eventinfo;`;
+
+  const myQuery = `SELECT participants, eventDescription, eventtitle AS eventName, to_char(eventdate,'Day Mon DD, YYYY') AS date, eventAddress AS location, to_char(eventtime, 'HH12:MI AM') AS time, imageLink AS imgsrc   FROM eventinfo;`;
 
   db.query(myQuery)
   .then((data) => {
     console.log(data.rows);
-    // data.rows.map(element => {
-    //   const newData = {
-    //     eventName: element.eventtitle,
-    //     location: element.eventaddress,
-    //     date: 
-    //   }
-    // })
+ 
     res.locals.events = data.rows;
     return next();
   })
   .catch((err) => {
     return next(err)
 })
+}
+
+eventController.addEvent = (req, res, next) => {
+  console.log('entered addEvent');
+
+  const {eventTitle, eventDescription, eventDate, eventTime, imageLink} = req.body;
+
+  
+  const values = [eventTitle,eventDescription,imageLink,eventDate,eventTime];
+  console.log(values);
+
+  
+  const qry = `INSERT INTO eventinfo (eventTitle, eventDate, eventTime, imageLink, eventAddress, eventDescription, theUser, participants) VALUES($1, to_date($4,'YYYY-MM-DD'), to_timestamp($5,'HH24:MI'), $3, '3900 w. manchester blvd. inglewood ca 90305', $2 ,'miketyson', 3);`
+  
+  db.query(qry,values).then((data) => {
+    console.log(data.rows);
+    res.locals.newEvent = data;
+    return next();
+  })
+  .catch(err => {return next(err)
+  });
 }
 
 eventController.myEvents = (req, res, next) => {
