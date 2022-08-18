@@ -21,20 +21,23 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+// import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
+import LogoutIcon from '@mui/icons-material/Logout';
+
 import GroupIcon from '@mui/icons-material/Group';
-import CreateEvent from './CreateEvent';
+// import CreateEvent from './CreateEvent';
 
 import { useNavigate } from 'react-router-dom';
 
 // const pages = ['Products', 'Pricing', 'Blog'];
 const pages = [];
-const settings = ['Profile', 'Account', 'Dashboard', 'Create Event', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Create Event', 'Logout'];
+const settings = [];
 // const pagesNavigate = ['/']
 
 const ResponsiveAppBar = ({ banner }) => {
@@ -64,20 +67,20 @@ const ResponsiveAppBar = ({ banner }) => {
 
   function logout() {
     console.log("i've been clicked");
-    handleCloseUserMenu();
-    clearInterval(banner);
+    // handleCloseUserMenu();
+    // clearInterval(banner);
     return navigate('/');
   }
 
 
 
-  const settingsAction = [logout, logout, logout, handleOpen, logout];
+  // const settingsAction = [logout, logout, logout, handleOpen, logout];
 
 
   return (
 
     <AppBar position="static">
-      <CreateEvent open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} />
+      {/* <CreateEvent open={open} setOpen={setOpen} handleOpen={handleOpen} handleClose={handleClose} /> */}
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -175,7 +178,7 @@ const ResponsiveAppBar = ({ banner }) => {
 
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            {/* <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Danger Noodle" src="/static/images/avatar/2.jpg" />
               </IconButton>
@@ -202,7 +205,11 @@ const ResponsiveAppBar = ({ banner }) => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
+            <MenuItem onClick={logout}>
+              <Typography sx={{ marginRight: '10px' }}>Logout</Typography>
+              <LogoutIcon />
+            </MenuItem>
           </Box>
         </Toolbar>
       </Container>

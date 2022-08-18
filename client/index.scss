@@ -25,6 +25,17 @@
 
 
   width: 100vw;
+  // height: 100vh;
+}
+
+.loginContents {
+  display: flex;
+  flex-direction: column;
+
+  background-color: #fff4f4;
+
+
+  width: 100vw;
   height: 100vh;
 }
 
@@ -33,6 +44,10 @@
   justify-content: space-between;
 
   margin: auto;
+
+  height: 100vh;
+
+  // background-color: black;
 
 
 
@@ -165,4 +180,9 @@
   flex-direction: column;
   border-color: 10px solid red;
 
+}
+
+.HomeSpeedDial {
+  position: absolute;
+  top: 5%;
 }

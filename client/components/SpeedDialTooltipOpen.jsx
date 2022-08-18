@@ -18,13 +18,13 @@ import PetsIcon from '@mui/icons-material/Pets';
 
 
 
-export default function SpeedDialTooltipOpen({ banner }) {
+export default function SpeedDialTooltipOpen() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const momo = () => {
-    clearInterval(banner);
+    // clearInterval(banner);
 
     document.querySelector('#banner').setAttribute('src', 'https://media.istockphoto.com/photos/very-funny-dog-picture-id499109117');
 
@@ -33,7 +33,7 @@ export default function SpeedDialTooltipOpen({ banner }) {
   };
 
   const nico = () => {
-    clearInterval(banner);
+    // clearInterval(banner);
 
     document.querySelector('#banner').setAttribute('src', 'https://preview.redd.it/ltz4xfzl8rn41.jpg?auto=webp&s=ebf4e69a38ff35f89cc56ca792fb930da6a2311e');
 
@@ -58,7 +58,7 @@ export default function SpeedDialTooltipOpen({ banner }) {
 
   const actions = [
     { icon: <FavoriteIcon />, name: 'Love', handleClick: momo },
-    { icon: <EmojiEmotionsIcon />, name: 'Happiness', handleClick: nico },
+    { icon: <EmojiEmotionsIcon />, name: 'Happiness', handleClick: nico }
     // { icon: <PlayCircleIcon />, name: 'Resume', handleClick: play }
   ];
 
