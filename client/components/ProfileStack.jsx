@@ -13,7 +13,16 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function BasicStack({ user }) {
-  console.log('user in stack', user);
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const username = urlParams.get('username');
+  const name = urlParams.get('name');
+
+  // const user = urlParams.get('username');
+  // const username = user.
+
+  // console.log('user in stack', user);
   // let { firstName, lastName, username } = user;
 
   // if (!firstName) firstName = 'John';
@@ -22,11 +31,13 @@ export default function BasicStack({ user }) {
 
   // const name = `${user.firstName} ${user.lastName}`;
 
+  // const fullName = `${user.firstName} ${user.lastName}`;
+
   return (
     <Box sx={{ width: '100%' }}>
       <Stack spacing={2}>
-        <Item>Username: {user}</Item>
-        <Item>Name: {user}</Item>
+        <Item>Username: {username}</Item>
+        <Item>Name: {name}</Item>
         {/* <Item>Item 3</Item> */}
       </Stack>
     </Box>

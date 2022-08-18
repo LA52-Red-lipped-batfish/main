@@ -22,7 +22,7 @@ const Profile = ({ open, setOpen, handleOpen, handleClose, user }) => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
-  const username = urlParams.get('name');
+  const username = urlParams.get('username');
 
   return (
     <Modal
@@ -32,7 +32,7 @@ const Profile = ({ open, setOpen, handleOpen, handleClose, user }) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <ProfileStack user={username} />
+        <ProfileStack user={user} />
         {/* <form action='http://localhost:8080/api' method='post'>
           <div className=' border border-dark p-3 mt-5' style={{ width: '400px' }}>
             <div className='d-flex justify-content-start flex-column'>

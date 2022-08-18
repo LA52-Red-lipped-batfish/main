@@ -71,15 +71,17 @@ userController.createLogin = (req, res, next) => {
 userController.goingButton = (req, res, next) => {
     console.log('entered going button');
     const {theUser, eventName, going} = req.body;
+    console.log({theUser, eventName, going})
     const goingQuery = [eventName, theUser];
     const goingQuery2 = [eventName];
+    console.log('THIS IS REQ BODY', req.body);
     queryText = "";
     queryText2 = "";
-    if(going === 'true'){
+    if(going === true){
       queryText = 'INSERT INTO allEvents (theEvent, theUser) VALUES ($1, $2 );'
       queryText2 = 'UPDATE eventinfo SET participants = (SELECT participants FROM eventinfo WHERE eventTitle = $1  ) + 1 WHERE eventTitle = $1 ;';
     
-    }else if(going === 'FALSE'){
+    }else if(going === false){
       console.log('delete it');
       queryText = 'DELETE FROM allEvents WHERE theEvent = $1 AND theUser = $2;'
       queryText2 = 'UPDATE eventinfo SET participants = (SELECT participants FROM eventinfo WHERE eventTitle = $1  ) - 1 WHERE eventTitle = $1 ;';
@@ -88,9 +90,11 @@ userController.goingButton = (req, res, next) => {
     db.query(queryText, goingQuery)
       .then(data => {
         console.log('successful add/delete event');
-
+        // console.log('THIS IS DATA', data.rows);
+        // console.log('THIS IS DATA', data);
         db.query(queryText2, goingQuery2)
         .then(data => {
+          // console.log('THIS IS DATA2', data);
           console.log('successful in updating participants');
           return next()
         })

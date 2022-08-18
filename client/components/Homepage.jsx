@@ -5,7 +5,7 @@ import "./Homepage.scss";
 
 import { useNavigate } from 'react-router-dom';
 
-import HomeSpeedDial from './HomeSpeedDial'
+import HomeSpeedDial from './HomeSpeedDial';
 
 import ResponsiveAppBar from './AppBar';
 
@@ -13,12 +13,19 @@ const Homepage = ({ user, setUser }) => {
   const [renderArray, updateArray] = useState([]);
   const [index, addIndex] = useState(4);
 
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const username = urlParams.get('username');
+
 
   let navigate = useNavigate();
 
 
   useEffect(() => {
-    axios.get('http://localhost:8080/getEvent')
+    axios.get('http://localhost:8080/getEvent', {
+      username: username
+    })
 
       .then(res => updateArray(res.data));
 
@@ -38,7 +45,7 @@ const Homepage = ({ user, setUser }) => {
 
       .then(res => updateArray(res.data));
 
-  }
+  };
   console.log(renderArray);
 
   console.log('USER IN HOMEPAGE', user);
@@ -79,7 +86,7 @@ const Homepage = ({ user, setUser }) => {
 
 
 
-        {renderArray.slice(0, index).map(e => <Events cards={e} key={e.eventTitle}
+        {renderArray.slice(0, index).map(e => <Events user={user} cards={e} key={e.eventTitle}
           updateRender={updateRender}
         ></Events>)}
 
