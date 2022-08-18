@@ -187,13 +187,9 @@ app.post('/api',  (req, res) => {
   // return res.status(200).send('test-server-return')
 })
 
-app.put('/attend',  (req, res) => {
- 
-  console.log('this is put',req.body);
-  
-   res.status(200)
-   // return res.status(200).send('test-server-return')
- })
+app.put('/attend', userController.goingButton, (req, res) => {
+  res.status(200).send('database updated');
+});
 
 // interested in event button
 
@@ -217,6 +213,9 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+
+
+
 // build
 app.get("*",(req,res)=>{
   res.sendFile(path.resolve(__dirname, '../build/index.html'))
@@ -234,8 +233,53 @@ app.use((err, req, res, next) => {
 })
 
 
+//GOOGLE OAUTH2
+
+// app.get("/", (req, res) => {
+//   res.json({message: "You are not logged in"})
+// })
+
+
+// app.get("/failed", (req, res) => {
+//   res.send("Failed")
+// })
+
+// app.get("/success", (req, res) => {
+//   res.send(`Welcome ${req.user.email}`)
+// })
+
+// app.get('/google', passport.authenticate('google', {scope: ['email', 'profile']}));
+
+// app.get('/google/callback',
+//   passport.authenticate('google', {
+//       failureRedirect: '/failed',
+//   }),
+//   function (req, res) {
+//       res.redirect('/success')
+//   }
+// );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(PORT, () => {
   console.log('Listening on ', PORT)
+  console.log(process.env.JACOB)
 })
 
 module.exports = app;
