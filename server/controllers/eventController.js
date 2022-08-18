@@ -22,14 +22,14 @@ eventController.getEvents = (req, res, next) => {
 eventController.addEvent = (req, res, next) => {
   console.log('entered addEvent');
 
-  const {eventTitle, eventDescription, eventDate, eventTime, imageLink} = req.body;
+  const {eventTitle, eventDescription, eventDate, eventTime, imageLink, location} = req.body;
 
   
-  const values = [eventTitle,eventDescription,imageLink,eventDate,eventTime];
+  const values = [eventTitle,eventDescription,imageLink,eventDate,eventTime, location];
   console.log(values);
 
   
-  const qry = `INSERT INTO eventinfo (eventTitle, eventDate, eventTime, imageLink, eventAddress, eventDescription, theUser, participants) VALUES($1, to_date($4,'YYYY-MM-DD'), to_timestamp($5,'HH24:MI'), $3, '3900 w. manchester blvd. inglewood ca 90305', $2 ,'miketyson', 3);`
+  const qry = `INSERT INTO eventinfo (eventTitle, eventDate, eventTime, imageLink, eventAddress, eventDescription, theUser, participants) VALUES($1, to_date($4,'YYYY-MM-DD'), to_timestamp($5,'HH24:MI'), $3, $6, $2 ,'miketyson', 3);`
   
   db.query(qry,values).then((data) => {
     console.log(data.rows);
