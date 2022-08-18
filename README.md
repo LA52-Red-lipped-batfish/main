@@ -153,6 +153,7 @@ UPDATE allEvents SET participants = (SELECT participants FROM eventinfo WHERE ev
 
 SELECT _id FROM users WHERE name = $1
 
+select * FROM allEvents where theevent = 'Lakers vs Clippers';
 
 UPDATE eventinfo SET participants = (SELECT participants FROM eventinfo WHERE eventTitle = 'Holloween Party'  ) + 1 WHERE eventTitle = 'Holloween Party' ;
 

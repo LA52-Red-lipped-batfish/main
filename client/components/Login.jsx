@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
@@ -15,14 +15,15 @@ import Box from '@mui/material/Box';
 // import Input from '@material-ui/core/Input';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Input from '@mui/material/Input';
 
 import { Modal } from '@mui/material';
 import SpeedDialTooltipOpen from './SpeedDialTooltipOpen';
 
-const Login = ({user, setUser}) => {
+const Login = ({ user, setUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const [signupUsername, setSignupUsername] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -44,7 +45,7 @@ const Login = ({user, setUser}) => {
   // }, 3000);
 
   // dummy data
-  const [users, setUsers] = useState([{ username: 'test', password: 'test' }]);
+  // const [users, setUsers] = useState([{ username: 'test', password: 'test' }]);
   // const [updateBanner, setUpdateBanner] = useState(setInterval(() => {
   //   document.querySelector('#banner').setAttribute('src', banners[randomBannerIndex++ % banners.length]);
 
@@ -98,11 +99,14 @@ const Login = ({user, setUser}) => {
 
 
 
+  useEffect(() => {
+    console.log('USER IN LOGIN PAGE', user);
+
+  }, []);
 
 
 
-
-  function handleLogin() {
+  async function handleLogin() {
     // testing with dummy data
     // for (const user of users) {
     //   if (user.username === username && user.password === password) {
@@ -110,6 +114,10 @@ const Login = ({user, setUser}) => {
     //     return navigate('/Home');
     //   }
     // }
+
+    if (!username || !password) {
+      return alert('Invalid Username/Password');
+    }
 
     const postBody = {
       username,
@@ -124,27 +132,39 @@ const Login = ({user, setUser}) => {
       body: JSON.stringify(postBody)
     };
 
-    fetch('/login', postOptions)
+    await fetch('/login', postOptions)
       .then((data) => data.json())
       .then((data) => {
         // if (data) {
         //   navigate('/home')
         // }
         // else return alert('Invalid Login');
+        // if (data.length === 0) return alert('Invalid Login');
+
+
 
         /*
           data
         */
-        setUser(data);
         console.log('THIS IS DATA', data);
+        setUser(data);
+
+        const {
+          firstName,
+          lastName,
+          username
+        } = data;
+
+        console.log('USER AFTER LOGIN', user);
 
         setUsername('');
         setPassword('');
 
-        return navigate('/home');
+        // return navigate('/home');
+        return window.location.href = `http://localhost:8080/home?username=${username}&name=${firstName.concat(' ', lastName)}`;
       })
-      .catch((error) =>{
-        console.log(error);
+      .catch((error) => {
+        // console.log('THIS IS LOGIN ERROR:', error);
 
         setUsername('');
         setPassword('');
@@ -155,10 +175,11 @@ const Login = ({user, setUser}) => {
     // clearInterval(banner);
 
 
+
     // return alert('Login Failed');
   }
 
-  const signUp = (event) => {
+  async function signUp(event) {
     event.preventDefault();
 
     // setUsers((prev) => {
@@ -170,6 +191,10 @@ const Login = ({user, setUser}) => {
 
     // console.log('users after', users);
 
+    // if (!username || !password) {
+    //   return alert('Invalid Username/Password');
+    // }
+
 
     const postBody = {
       username: signupUsername,
@@ -177,6 +202,8 @@ const Login = ({user, setUser}) => {
       firstName,
       lastName
     };
+
+    console.log('POST BODY', postBody);
 
     const postOptions = {
       method: 'POST',
@@ -186,13 +213,16 @@ const Login = ({user, setUser}) => {
       body: JSON.stringify(postBody)
     };
 
-    fetch('/signup', postOptions)
+    await fetch('/signup', postOptions)
       .then((data) => data.json())
       .then((data) => {
         // if (data) {
         //   navigate('/home')
         // }
         // else return alert('Invalid Login');
+
+        console.log('THIS IS DATA @ SINGUP', data);
+
         setSignupUsername('');
         setSignupPassword('');
         setFirstName('');
@@ -200,12 +230,15 @@ const Login = ({user, setUser}) => {
 
         setOpen(false);
 
-        return navigate('/home');
+        return alert('Signup Complete');
       })
       .catch((error) => {
         console.log(error);
+
+        console.log('THIS IS THE ERROR', error);
+
         setOpen(false);
-        return alert('Invalid Account');
+        return alert('Username Already Exists');
       });
   };
 
@@ -222,57 +255,61 @@ const Login = ({user, setUser}) => {
             </center>
 
             <div className='signupbox-input'>
-              <TextField
-                id="filled-basic"
-                label="First Name"
-                variant="filled"
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                sx={{
-                  borderRadius: '0px',
-                  // borderColor: 'green',
-                }}
-              />
+              <form className='signupbox-input'>
 
-              <TextField
-                id="filled-basic"
-                label="Last Name"
-                variant="filled"
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                sx={{
-                  borderRadius: '0px',
-                  // borderColor: 'green',
-                }}
-              />
+                <TextField
+                  id="filled-basic"
+                  label="First Name"
+                  variant="filled"
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  sx={{
+                    borderRadius: '0px',
+                    // borderColor: 'green',
+                  }}
+                />
 
-              <TextField
-                id="filled-basic"
-                label="Username"
-                variant="filled"
-                type="text"
-                value={signupUsername}
-                onChange={(e) => setSignupUsername(e.target.value)}
-                sx={{
-                  borderRadius: '0px',
-                  // borderColor: 'green',
-                }}
-              />
+                <TextField
+                  id="filled-basic"
+                  label="Last Name"
+                  variant="filled"
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  sx={{
+                    borderRadius: '0px',
+                    // borderColor: 'green',
+                  }}
+                />
 
-              <TextField
-                id="filled-basic"
-                label="Password"
-                variant="filled"
-                type="password"
-                value={signupPassword}
-                onChange={(e) => setSignupPassword(e.target.value)}
-                sx={{
-                  borderRadius: '0px',
-                  // backgroundColor: 'green'
-                }}
-              />
+                <TextField
+                  id="filled-basic"
+                  label="Username"
+                  variant="filled"
+                  type="text"
+                  value={signupUsername}
+                  onChange={(e) => setSignupUsername(e.target.value)}
+                  sx={{
+                    borderRadius: '0px',
+                    // borderColor: 'green',
+                  }}
+                />
+
+                <TextField
+                  id="filled-basic"
+                  label="Password"
+                  variant="filled"
+                  type="password"
+                  value={signupPassword}
+                  onChange={(e) => setSignupPassword(e.target.value)}
+                  sx={{
+                    borderRadius: '0px',
+                    // backgroundColor: 'green'
+                  }}
+                />
+              </form>
+
             </div>
 
             <Button
