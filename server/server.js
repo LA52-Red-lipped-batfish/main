@@ -181,7 +181,7 @@ app.post('/signup', userController.createLogin, (req, res) => {
 //      email: 'ilovepuffseven@gmail.com',
 //      description: 'lets party !!!'
 //    }
-app.post('/api',  (req, res) => {
+app.post('/api', eventController.addEvent, (req, res) => {
  
  console.log('this is post',req.body);
  
