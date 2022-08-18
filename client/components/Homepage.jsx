@@ -23,7 +23,7 @@ const Homepage = ({ user, setUser }) => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8080/getEvent', {
+    axios.post('http://localhost:8080/getEvent', {
       username: username
     })
 

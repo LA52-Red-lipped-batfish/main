@@ -198,7 +198,7 @@ app.put('/attend', userController.goingButton, (req, res) => {
 
 // get all events
 
-app.get('/getEvent', eventController.getEvents, (req, res) => {
+app.post('/getEvent', eventController.getEvents, eventController.addIsGoing, (req, res) => {
   
   return res.status(200).json(res.locals.events);
 })
