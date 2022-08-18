@@ -2,6 +2,8 @@ import React from 'react';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
+import ProfileStack from './ProfileStack';
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -16,7 +18,12 @@ const style = {
 };
 
 
-const Profile = ({ open, setOpen, handleOpen, handleClose }) => {
+const Profile = ({ open, setOpen, handleOpen, handleClose, user }) => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const username = urlParams.get('name');
+
   return (
     <Modal
       open={open}
@@ -25,7 +32,8 @@ const Profile = ({ open, setOpen, handleOpen, handleClose }) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <form action='http://localhost:8080/api' method='post'>
+        <ProfileStack user={username} />
+        {/* <form action='http://localhost:8080/api' method='post'>
           <div className=' border border-dark p-3 mt-5' style={{ width: '400px' }}>
             <div className='d-flex justify-content-start flex-column'>
               <div className="mb-3">
@@ -51,7 +59,7 @@ const Profile = ({ open, setOpen, handleOpen, handleClose }) => {
               </div>
             </div>
           </div>
-        </form>
+        </form> */}
       </Box>
 
     </Modal>
