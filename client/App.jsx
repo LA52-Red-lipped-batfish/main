@@ -7,6 +7,8 @@ import './index.scss';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import {useState} from 'react';
+
 
 const theme = createTheme({
   palette: {
@@ -28,14 +30,15 @@ const theme = createTheme({
 });
 
 const App = () => {
+  const [user, setUser] = useState(null);
 
   return (
     <ThemeProvider theme={theme}>
 
       <Router>
         <Routes>
-          <Route path='/' element={<Login />} />
-          <Route path='/home' element={<Homepage />} />
+          <Route path='/' element={<Login user={user} setUser={setUser} />} />
+          <Route path='/home' element={<Homepage user={user} setUser={setUser} />} />
         </Routes>
       </Router>
     </ThemeProvider>

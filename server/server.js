@@ -28,148 +28,150 @@ app.post('/signup', userController.createLogin, (req, res) => {
   console.log('Exit createLogin');
   return res.status(200).send('created a new user');
 })
-app.get('/getEvent',(req,res)=>{
+// app.get('/getEvent',(req,res)=>{
 
-  return res.status(200).send([
-    {
-      eventTitle:'Jacob "s birthday',
-      participants:100,
-      eventAddress:'300 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 20th 2022',
-      eventTime:'8:20PM',
-      eventDescription:'Have fun ',
-      imageLink:"https://c.tenor.com/BF4LXetTi0kAAAAd/birthday-wishes.gif"
-  },
-  {
-    eventTitle:'Michael "s birthday',
-    participants:100,
-    eventAddress:'300 1st street,Arcadia,CA,91006',
-    eventDate:'Oct 20th 2022',
-    eventTime:'8:20PM',
-    eventDescription:'Have fun ',
-    imageLink:"https://www.funimada.com/assets/images/cards/big/bday-254.gif"
-},
+//   // return res.status(200).send(res.local)
 
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  },
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  },
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  },
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  }
-  , {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  }
-  , {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  }
-  , {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  },
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  },
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  },
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  },
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  },
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  },
-  {
-    eventTitle:'Motorcycle party',
-      participants:999,
-      eventAddress:'100 1st street,Arcadia,CA,91006',
-      eventDate:'Oct 10th 2022',
-      eventTime:'8:30PM',
-      eventDescription:'Let"party',
-      imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
-  }
+//   return res.status(200).send([
+//     {
+//       eventTitle:'Jacob "s birthday',
+//       participants:100,
+//       eventAddress:'300 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 20th 2022',
+//       eventTime:'8:20PM',
+//       eventDescription:'Have fun ',
+//       imageLink:"https://c.tenor.com/BF4LXetTi0kAAAAd/birthday-wishes.gif"
+//   },
+//   {
+//     eventTitle:'Michael "s birthday',
+//     participants:100,
+//     eventAddress:'300 1st street,Arcadia,CA,91006',
+//     eventDate:'Oct 20th 2022',
+//     eventTime:'8:20PM',
+//     eventDescription:'Have fun ',
+//     imageLink:"https://www.funimada.com/assets/images/cards/big/bday-254.gif"
+// },
 
-  ])
-})
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   },
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   },
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   },
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   }
+//   , {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   }
+//   , {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   }
+//   , {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   },
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   },
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   },
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   },
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   },
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   },
+//   {
+//     eventTitle:'Motorcycle party',
+//       participants:999,
+//       eventAddress:'100 1st street,Arcadia,CA,91006',
+//       eventDate:'Oct 10th 2022',
+//       eventTime:'8:30PM',
+//       eventDescription:'Let"party',
+//       imageLink:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9lJwMZJh8Lnm78xKGoTVQYHAtUHOsr_-vA&usqp=CAU"
+//   }
+
+//   ])
+// })
 //sending request to api
 //the object from the request body  
 //  {
@@ -178,11 +180,11 @@ app.get('/getEvent',(req,res)=>{
 //      email: 'ilovepuffseven@gmail.com',
 //      description: 'lets party !!!'
 //    }
-app.post('/api',  (req, res) => {
+app.post('/api', eventController.addEvent, (req, res) => {
  
  console.log('this is post',req.body);
  
-  res.status(200)
+  res.status(200).redirect('http://localhost:8080/home')
   // return res.status(200).send('test-server-return')
 })
 
@@ -197,7 +199,7 @@ app.put('/attend', userController.goingButton, (req, res) => {
 // get all events
 
 app.get('/getEvent', eventController.getEvents, (req, res) => {
-  console.log('successfully get events');
+  
   return res.status(200).json(res.locals.events);
 })
 // statically serve our build folder if we are in production
