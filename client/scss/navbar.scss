@@ -1,0 +1,19 @@
+* {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.nav-bar{
+    background-color: rgb(240, 229, 240);
+    display: flex;
+    padding: 0.5em;
+    justify-content: space-between;
+    border-radius: 15px;
+}
+
+
+#login-form{
+    // grid-column-start: 3;
+    // grid-column-end: 4;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}

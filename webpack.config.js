@@ -1,8 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const htmlPlugin = new HtmlWebpackPlugin({
-  filename: 'webpack.html',
-  template: './client/index.html'
+  title: 'Development Server',
+  // fixed which template file is served
+  template: 'index.html'
 })
 
 module.exports = {
@@ -12,35 +13,31 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', '@babel/preset-react']
-            ]
-          }
+          // alex commented these out since he added in .babelrc
+          // options: {
+          //   presets: [
+          //     ['@babel/preset-env', '@babel/preset-react']
+          //   ]
+          // }
         }
       },
       {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
+        // made a quick edit to the scss loader.. added sass-loader to use array
         use: [
           "style-loader",
           "css-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              implementation: require.resolve("sass"),
-            }
-          }
+          "sass-loader"
         ]
       }
     ]
@@ -51,9 +48,16 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
+  // added a static object in dev server. this basically tells dev server what to statically serve when loading up
   devServer: {
+    static: {
+      publicPath: '/build',
+      directory: path.join(__dirname, 'build')
+    },
+    // made an edit to proxy endpoint
     proxy: {
-      '/': 'localhost:3000'
+      '/api': 'http://localhost:3000',
+      '/events': 'http://localhost:3000'
     }
   }
 }
